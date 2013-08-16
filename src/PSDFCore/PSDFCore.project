@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="PSDFCore">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00020001N0005Debug0007Qt4.7.4000000000001N0007Release0007Qt4.7.400000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <VirtualDirectory Name="src">
+    <File Name="View/Camera2D.cpp"/>
+    <File Name="View/Camera3D.cpp"/>
+    <File Name="View/CameraBase.cpp"/>
+    <File Name="View/CameraController.cpp"/>
+    <File Name="Common/Common.cpp"/>
+    <File Name="Data/DataCenter.cpp"/>
+    <File Name="Event/EventCenter.cpp"/>
+    <File Name="Event/EventStation.cpp"/>
+    <File Name="Label/Label.cpp"/>
+    <File Name="Layer/LayerManager.cpp"/>
+    <File Name="LOD2D/LOD2D.cpp"/>
+    <File Name="Network/NetworkCenter.cpp"/>
+    <File Name="View/OsgViewerBase.cpp"/>
+    <File Name="Pick/PickableManager.cpp"/>
+    <File Name="Plugin/PluginManager.cpp"/>
+    <File Name="Scene/ProjectTrans.cpp"/>
+    <File Name="Scene/ProjectTransWinkel3.cpp"/>
+    <File Name="Scene/SceneCenter.cpp"/>
+    <File Name="Layer/ScreenManager.cpp"/>
+    <File Name="View/StaticNodeGroup.cpp"/>
+    <File Name="View/StatsHandler.cpp"/>
+    <File Name="StdAfx.cpp"/>
+    <File Name="Network/NetworkBuffer.cpp"/>
+    <File Name="Network/NetworkConn.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="include">
+    <File Name="../../include/PSDFCore/View/Camera2D.h"/>
+    <File Name="../../include/PSDFCore/View/Camera3D.h"/>
+    <File Name="../../include/PSDFCore/View/CameraBase.h"/>
+    <File Name="../../include/PSDFCore/View/CameraController.h"/>
+    <File Name="../../include/PSDFCore/Common/Common.h"/>
+    <File Name="../../include/PSDFCore/Data/DataCenter.h"/>
+    <File Name="../../include/PSDFCore/Event/EventCenter.h"/>
+    <File Name="../../include/PSDFCore/Event/EventHandler.h"/>
+    <File Name="../../include/PSDFCore/Event/EventStation.h"/>
+    <File Name="../../include/PSDFCore/Event/EventType.h"/>
+    <File Name="../../include/PSDFCore/Label/Label.h"/>
+    <File Name="../../include/PSDFCore/Layer/Layer.h"/>
+    <File Name="../../include/PSDFCore/Layer/LayerManager.h"/>
+    <File Name="../../include/PSDFCore/LOD2D/LOD2D.h"/>
+    <File Name="../../include/PSDFCore/Network/NetworkCenter.h"/>
+    <File Name="../../include/PSDFCore/Network/NetworkDataRecognizer.h"/>
+    <File Name="../../include/PSDFCore/View/OsgViewerBase.h"/>
+    <File Name="../../include/PSDFCore/Pick/Pickable.h"/>
+    <File Name="../../include/PSDFCore/Pick/PickableManager.h"/>
+    <File Name="../../include/PSDFCore/Plugin/Plugin.h"/>
+    <File Name="../../include/PSDFCore/Plugin/PluginManager.h"/>
+    <File Name="../../include/PSDFCore/Thread/PosixThreads.h"/>
+    <File Name="../../include/PSDFCore/Scene/ProjectTrans.h"/>
+    <File Name="../../include/PSDFCore/Scene/ProjectTransWinkel3.h"/>
+    <File Name="../../include/PSDFCore/PSDFCore.h"/>
+    <File Name="../../include/PSDFCore/Scene/SceneCenter.h"/>
+    <File Name="../../include/PSDFCore/Layer/ScreenManager.h"/>
+    <File Name="../../include/PSDFCore/View/StaticNodeGroup.h"/>
+    <File Name="../../include/PSDFCore/View/StatsHandler.h"/>
+    <File Name="../../include/PSDFCore/StdAfx.h"/>
+    <File Name="../../include/PSDFCore/Network/NetworkBuffer.h"/>
+    <File Name="../../include/PSDFCore/Network/NetworkConn.h"/>
+  </VirtualDirectory>
+  <Dependencies/>
+  <Dependencies Name="Debug"/>
+  <Settings Type="Dynamic Library">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g -Wall" C_Options="" Required="yes" PreCompiledHeader="/Users/Ymy/Projects/CodeLite/PluginSDF-1.0.0/include/PSDFCore/StdAfx.h" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="$(WorkspacePath)/include/PSDFCore"/>
+        <Preprocessor Value="_DEBUG"/>
+        <Preprocessor Value="_USRDLL"/>
+        <Preprocessor Value="PSDF_CORE_EXPORTS"/>
+      </Compiler>
+      <Linker Options="-O0" Required="yes">
+        <Library Value="OpenThreadsd"/>
+        <Library Value="osgd"/>
+        <Library Value="osgViewerd"/>
+        <Library Value="osgDBd"/>
+        <Library Value="osgUtild"/>
+        <Library Value="osgTextd"/>
+        <Library Value="osgSimd"/>
+        <Library Value="osgGAd"/>
+        <Library Value="boost_system-mt"/>
+        <Library Value="boost_program_options-mt"/>
+        <Library Value="pthread"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(WorkspacePath)/lib/lib$(ProjectName)d.dylib" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="./Debug" PauseExecWhenProcTerminates="no"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Dynamic Library" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O3;-Wall" C_Options="" Required="yes" PreCompiledHeader="/Users/Ymy/Projects/CodeLite/PluginSDF-1.0.0/include/PSDFCore/StdAfx.h" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="$(WorkspacePath)/include/PSDFCore"/>
+        <Preprocessor Value="NDEBUG"/>
+        <Preprocessor Value="_USRDLL"/>
+        <Preprocessor Value="PSDF_CORE_EXPORTS"/>
+      </Compiler>
+      <Linker Options="-O0" Required="yes">
+        <Library Value="OpenThreads"/>
+        <Library Value="osg"/>
+        <Library Value="osgViewer"/>
+        <Library Value="osgDB"/>
+        <Library Value="osgUtil"/>
+        <Library Value="osgText"/>
+        <Library Value="osgSim"/>
+        <Library Value="osgGA"/>
+        <Library Value="boost_system-mt"/>
+        <Library Value="boost_program_options-mt"/>
+        <Library Value="pthread"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(WorkspacePath)/lib/lib$(ProjectName).dylib" IntermediateDirectory="$(ConfigurationName)" Command="" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="./Debug" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Release"/>
+</CodeLite_Project>

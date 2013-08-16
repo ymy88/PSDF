@@ -1,0 +1,903 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F93633CE17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F93633CD17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp */; };
+		F93633CF17B3C4C600F6158C /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */; };
+		F93633D017B3C4C900F6158C /* libboost_filesystem-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */; };
+		F93633D117B3C4CB00F6158C /* libboost_program_options-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */; };
+		F95BBFA017B3AB3300442DAE /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4B17B3AAE600442DAE /* Common.cpp */; };
+		F95BBFA117B3AB3300442DAE /* DataCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4D17B3AAE600442DAE /* DataCenter.cpp */; };
+		F95BBFA217B3AB3300442DAE /* EventCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4F17B3AAE600442DAE /* EventCenter.cpp */; };
+		F95BBFA317B3AB3300442DAE /* EventStation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5017B3AAE600442DAE /* EventStation.cpp */; };
+		F95BBFA417B3AB3300442DAE /* Label.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5317B3AAE600442DAE /* Label.cpp */; };
+		F95BBFA517B3AB3300442DAE /* LayerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5517B3AAE600442DAE /* LayerManager.cpp */; };
+		F95BBFA617B3AB3300442DAE /* ScreenManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5617B3AAE600442DAE /* ScreenManager.cpp */; };
+		F95BBFA717B3AB3300442DAE /* LOD2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5817B3AAE600442DAE /* LOD2D.cpp */; };
+		F95BBFA817B3AB3300442DAE /* NetworkBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5A17B3AAE600442DAE /* NetworkBuffer.cpp */; };
+		F95BBFA917B3AB3300442DAE /* NetworkCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5B17B3AAE600442DAE /* NetworkCenter.cpp */; };
+		F95BBFAA17B3AB3300442DAE /* NetworkConn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5C17B3AAE600442DAE /* NetworkConn.cpp */; };
+		F95BBFAB17B3AB3300442DAE /* PickableManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF5E17B3AAE600442DAE /* PickableManager.cpp */; };
+		F95BBFAC17B3AB3300442DAE /* PluginManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6017B3AAE600442DAE /* PluginManager.cpp */; };
+		F95BBFAD17B3AB3300442DAE /* ProjectTrans.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6417B3AAE600442DAE /* ProjectTrans.cpp */; };
+		F95BBFAE17B3AB3300442DAE /* ProjectTransWinkel3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6517B3AAE600442DAE /* ProjectTransWinkel3.cpp */; };
+		F95BBFAF17B3AB3300442DAE /* SceneCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6617B3AAE600442DAE /* SceneCenter.cpp */; };
+		F95BBFB017B3AB3300442DAE /* Camera2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6917B3AAE600442DAE /* Camera2D.cpp */; };
+		F95BBFB117B3AB3300442DAE /* Camera3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6A17B3AAE600442DAE /* Camera3D.cpp */; };
+		F95BBFB217B3AB3300442DAE /* CameraBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6B17B3AAE600442DAE /* CameraBase.cpp */; };
+		F95BBFB317B3AB3300442DAE /* CameraController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6C17B3AAE600442DAE /* CameraController.cpp */; };
+		F95BBFB417B3AB3300442DAE /* OsgViewerBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6D17B3AAE600442DAE /* OsgViewerBase.cpp */; };
+		F95BBFB517B3AB3300442DAE /* StaticNodeGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6E17B3AAE600442DAE /* StaticNodeGroup.cpp */; };
+		F95BBFB617B3AB3300442DAE /* StatsHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6F17B3AAE600442DAE /* StatsHandler.cpp */; };
+		F95BBFB717B3AB3E00442DAE /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6717B3AAE600442DAE /* StdAfx.cpp */; };
+		F95BBFBB17B3ADAA00442DAE /* libboost_program_options-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */; };
+		F95BBFBD17B3ADB600442DAE /* libboost_filesystem-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */; };
+		F95BBFBF17B3ADBA00442DAE /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */; };
+		F95BBFD017B3B0E600442DAE /* QGLWidgetAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7217B3AAE600442DAE /* QGLWidgetAdapter.cpp */; };
+		F95BBFD117B3B0E600442DAE /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7517B3AAE600442DAE /* stdafx.cpp */; };
+		F95BBFD217B3B0E600442DAE /* ViewerQt2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7717B3AAE600442DAE /* ViewerQt2D.cpp */; };
+		F95BBFD317B3B0E600442DAE /* ViewerQt3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7817B3AAE600442DAE /* ViewerQt3D.cpp */; };
+		F95BBFDA17B3B4BC00442DAE /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = F95BBF1A17B3AAD000442DAE /* Common.h */; };
+		F95BBFDB17B3B4C500442DAE /* QGLWidgetAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = F95BBF1B17B3AAD000442DAE /* QGLWidgetAdapter.h */; };
+		F95BBFDC17B3B4C800442DAE /* ViewerQt2D.h in Headers */ = {isa = PBXBuildFile; fileRef = F95BBF1C17B3AAD000442DAE /* ViewerQt2D.h */; };
+		F95BBFDD17B3B4CB00442DAE /* ViewerQt3D.h in Headers */ = {isa = PBXBuildFile; fileRef = F95BBF1D17B3AAD000442DAE /* ViewerQt3D.h */; };
+		F95BBFDE17B3B4CE00442DAE /* PSDFViewQt.h in Headers */ = {isa = PBXBuildFile; fileRef = F95BBF1E17B3AAD000442DAE /* PSDFViewQt.h */; };
+		F95BBFE617B3BD3600442DAE /* QtCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE317B3BD3600442DAE /* QtCore.framework */; };
+		F95BBFE717B3BD3600442DAE /* QtGui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE417B3BD3600442DAE /* QtGui.framework */; };
+		F95BBFE817B3BD3600442DAE /* QtOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9147AA617B4EFA90079BD89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F90D7AF717B3A9DF00383FC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F95BBF9B17B3AB0400442DAE;
+			remoteInfo = PSDFCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F93633CD17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = moc_QGLWidgetAdapter.cpp; sourceTree = "<group>"; };
+		F95BBEE817B3AAD000442DAE /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		F95BBEEA17B3AAD000442DAE /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
+		F95BBEEC17B3AAD000442DAE /* EventCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCenter.h; sourceTree = "<group>"; };
+		F95BBEED17B3AAD000442DAE /* EventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventHandler.h; sourceTree = "<group>"; };
+		F95BBEEE17B3AAD000442DAE /* EventStation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventStation.h; sourceTree = "<group>"; };
+		F95BBEEF17B3AAD000442DAE /* EventType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventType.h; sourceTree = "<group>"; };
+		F95BBEF117B3AAD000442DAE /* Label.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Label.h; sourceTree = "<group>"; };
+		F95BBEF317B3AAD000442DAE /* Layer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Layer.h; sourceTree = "<group>"; };
+		F95BBEF417B3AAD000442DAE /* LayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayerManager.h; sourceTree = "<group>"; };
+		F95BBEF517B3AAD000442DAE /* ScreenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenManager.h; sourceTree = "<group>"; };
+		F95BBEF717B3AAD000442DAE /* LOD2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LOD2D.h; sourceTree = "<group>"; };
+		F95BBEF917B3AAD000442DAE /* NetworkBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkBuffer.h; sourceTree = "<group>"; };
+		F95BBEFA17B3AAD000442DAE /* NetworkCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkCenter.h; sourceTree = "<group>"; };
+		F95BBEFB17B3AAD000442DAE /* NetworkConn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkConn.h; sourceTree = "<group>"; };
+		F95BBEFC17B3AAD000442DAE /* NetworkDataRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkDataRecognizer.h; sourceTree = "<group>"; };
+		F95BBEFE17B3AAD000442DAE /* Pickable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pickable.h; sourceTree = "<group>"; };
+		F95BBEFF17B3AAD000442DAE /* PickableManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickableManager.h; sourceTree = "<group>"; };
+		F95BBF0117B3AAD000442DAE /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
+		F95BBF0217B3AAD000442DAE /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
+		F95BBF0317B3AAD000442DAE /* PluginType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginType.h; sourceTree = "<group>"; };
+		F95BBF0617B3AAD000442DAE /* ProjectTrans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTrans.h; sourceTree = "<group>"; };
+		F95BBF0717B3AAD000442DAE /* ProjectTransWinkel3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectTransWinkel3.h; sourceTree = "<group>"; };
+		F95BBF0817B3AAD000442DAE /* SceneCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneCenter.h; sourceTree = "<group>"; };
+		F95BBF0917B3AAD000442DAE /* StdAfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdAfx.h; sourceTree = "<group>"; };
+		F95BBF0B17B3AAD000442DAE /* PosixThreads.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosixThreads.h; sourceTree = "<group>"; };
+		F95BBF1117B3AAD000442DAE /* Camera2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera2D.h; sourceTree = "<group>"; };
+		F95BBF1217B3AAD000442DAE /* Camera3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Camera3D.h; sourceTree = "<group>"; };
+		F95BBF1317B3AAD000442DAE /* CameraBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraBase.h; sourceTree = "<group>"; };
+		F95BBF1417B3AAD000442DAE /* CameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraController.h; sourceTree = "<group>"; };
+		F95BBF1517B3AAD000442DAE /* OsgViewerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OsgViewerBase.h; sourceTree = "<group>"; };
+		F95BBF1617B3AAD000442DAE /* StaticNodeGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticNodeGroup.h; sourceTree = "<group>"; };
+		F95BBF1717B3AAD000442DAE /* StatsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatsHandler.h; sourceTree = "<group>"; };
+		F95BBF1A17B3AAD000442DAE /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		F95BBF1B17B3AAD000442DAE /* QGLWidgetAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QGLWidgetAdapter.h; sourceTree = "<group>"; };
+		F95BBF1C17B3AAD000442DAE /* ViewerQt2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewerQt2D.h; sourceTree = "<group>"; };
+		F95BBF1D17B3AAD000442DAE /* ViewerQt3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewerQt3D.h; sourceTree = "<group>"; };
+		F95BBF1E17B3AAD000442DAE /* PSDFViewQt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSDFViewQt.h; sourceTree = "<group>"; };
+		F95BBF4B17B3AAE600442DAE /* Common.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Common.cpp; sourceTree = "<group>"; };
+		F95BBF4D17B3AAE600442DAE /* DataCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataCenter.cpp; sourceTree = "<group>"; };
+		F95BBF4F17B3AAE600442DAE /* EventCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventCenter.cpp; sourceTree = "<group>"; };
+		F95BBF5017B3AAE600442DAE /* EventStation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventStation.cpp; sourceTree = "<group>"; };
+		F95BBF5317B3AAE600442DAE /* Label.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Label.cpp; sourceTree = "<group>"; };
+		F95BBF5517B3AAE600442DAE /* LayerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayerManager.cpp; sourceTree = "<group>"; };
+		F95BBF5617B3AAE600442DAE /* ScreenManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScreenManager.cpp; sourceTree = "<group>"; };
+		F95BBF5817B3AAE600442DAE /* LOD2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LOD2D.cpp; sourceTree = "<group>"; };
+		F95BBF5A17B3AAE600442DAE /* NetworkBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkBuffer.cpp; sourceTree = "<group>"; };
+		F95BBF5B17B3AAE600442DAE /* NetworkCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkCenter.cpp; sourceTree = "<group>"; };
+		F95BBF5C17B3AAE600442DAE /* NetworkConn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkConn.cpp; sourceTree = "<group>"; };
+		F95BBF5E17B3AAE600442DAE /* PickableManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PickableManager.cpp; sourceTree = "<group>"; };
+		F95BBF6017B3AAE600442DAE /* PluginManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PluginManager.cpp; sourceTree = "<group>"; };
+		F95BBF6417B3AAE600442DAE /* ProjectTrans.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectTrans.cpp; sourceTree = "<group>"; };
+		F95BBF6517B3AAE600442DAE /* ProjectTransWinkel3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ProjectTransWinkel3.cpp; sourceTree = "<group>"; };
+		F95BBF6617B3AAE600442DAE /* SceneCenter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneCenter.cpp; sourceTree = "<group>"; };
+		F95BBF6717B3AAE600442DAE /* StdAfx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StdAfx.cpp; sourceTree = "<group>"; };
+		F95BBF6917B3AAE600442DAE /* Camera2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera2D.cpp; sourceTree = "<group>"; };
+		F95BBF6A17B3AAE600442DAE /* Camera3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera3D.cpp; sourceTree = "<group>"; };
+		F95BBF6B17B3AAE600442DAE /* CameraBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraBase.cpp; sourceTree = "<group>"; };
+		F95BBF6C17B3AAE600442DAE /* CameraController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraController.cpp; sourceTree = "<group>"; };
+		F95BBF6D17B3AAE600442DAE /* OsgViewerBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OsgViewerBase.cpp; sourceTree = "<group>"; };
+		F95BBF6E17B3AAE600442DAE /* StaticNodeGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticNodeGroup.cpp; sourceTree = "<group>"; };
+		F95BBF6F17B3AAE600442DAE /* StatsHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StatsHandler.cpp; sourceTree = "<group>"; };
+		F95BBF7217B3AAE600442DAE /* QGLWidgetAdapter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QGLWidgetAdapter.cpp; sourceTree = "<group>"; };
+		F95BBF7517B3AAE600442DAE /* stdafx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stdafx.cpp; sourceTree = "<group>"; };
+		F95BBF7717B3AAE600442DAE /* ViewerQt2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewerQt2D.cpp; sourceTree = "<group>"; };
+		F95BBF7817B3AAE600442DAE /* ViewerQt3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewerQt3D.cpp; sourceTree = "<group>"; };
+		F95BBF9C17B3AB0400442DAE /* libPSDFCored.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPSDFCored.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_program_options-mt.a"; path = "/opt/local/lib/libboost_program_options-mt.a"; sourceTree = "<absolute>"; };
+		F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_filesystem-mt.a"; path = "/opt/local/lib/libboost_filesystem-mt.a"; sourceTree = "<absolute>"; };
+		F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "/opt/local/lib/libboost_system-mt.a"; sourceTree = "<absolute>"; };
+		F95BBFCB17B3B0C400442DAE /* libPSDFViewQtd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPSDFViewQtd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		F95BBFE317B3BD3600442DAE /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
+		F95BBFE417B3BD3600442DAE /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<absolute>"; };
+		F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGL.framework; path = /Library/Frameworks/QtOpenGL.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F95BBF9917B3AB0400442DAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95BBFBB17B3ADAA00442DAE /* libboost_program_options-mt.a in Frameworks */,
+				F95BBFBD17B3ADB600442DAE /* libboost_filesystem-mt.a in Frameworks */,
+				F95BBFBF17B3ADBA00442DAE /* libboost_system-mt.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F95BBFC817B3B0C400442DAE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95BBFE617B3BD3600442DAE /* QtCore.framework in Frameworks */,
+				F95BBFE717B3BD3600442DAE /* QtGui.framework in Frameworks */,
+				F95BBFE817B3BD3600442DAE /* QtOpenGL.framework in Frameworks */,
+				F93633CF17B3C4C600F6158C /* libboost_system-mt.a in Frameworks */,
+				F93633D017B3C4C900F6158C /* libboost_filesystem-mt.a in Frameworks */,
+				F93633D117B3C4CB00F6158C /* libboost_program_options-mt.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F90D7AF617B3A9DF00383FC2 = {
+			isa = PBXGroup;
+			children = (
+				F95BBEE517B3AAD000442DAE /* include */,
+				F95BBF4817B3AAE600442DAE /* src */,
+				F95BBFC617B3B09E00442DAE /* lib */,
+				F90D7B0017B3A9DF00383FC2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F90D7B0017B3A9DF00383FC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF9C17B3AB0400442DAE /* libPSDFCored.dylib */,
+				F95BBFCB17B3B0C400442DAE /* libPSDFViewQtd.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F95BBEE517B3AAD000442DAE /* include */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEE617B3AAD000442DAE /* PSDFCore */,
+				F95BBF1817B3AAD000442DAE /* PSDFViewQt */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		F95BBEE617B3AAD000442DAE /* PSDFCore */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEE717B3AAD000442DAE /* Common */,
+				F95BBEE917B3AAD000442DAE /* Data */,
+				F95BBEEB17B3AAD000442DAE /* Event */,
+				F95BBEF017B3AAD000442DAE /* Label */,
+				F95BBEF217B3AAD000442DAE /* Layer */,
+				F95BBEF617B3AAD000442DAE /* LOD2D */,
+				F95BBEF817B3AAD000442DAE /* Network */,
+				F95BBEFD17B3AAD000442DAE /* Pick */,
+				F95BBF0017B3AAD000442DAE /* Plugin */,
+				F95BBF0517B3AAD000442DAE /* Scene */,
+				F95BBF0917B3AAD000442DAE /* StdAfx.h */,
+				F95BBF0A17B3AAD000442DAE /* Thread */,
+				F95BBF1017B3AAD000442DAE /* View */,
+			);
+			path = PSDFCore;
+			sourceTree = "<group>";
+		};
+		F95BBEE717B3AAD000442DAE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEE817B3AAD000442DAE /* Common.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F95BBEE917B3AAD000442DAE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEEA17B3AAD000442DAE /* DataCenter.h */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F95BBEEB17B3AAD000442DAE /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEEC17B3AAD000442DAE /* EventCenter.h */,
+				F95BBEED17B3AAD000442DAE /* EventHandler.h */,
+				F95BBEEE17B3AAD000442DAE /* EventStation.h */,
+				F95BBEEF17B3AAD000442DAE /* EventType.h */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		F95BBEF017B3AAD000442DAE /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEF117B3AAD000442DAE /* Label.h */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		F95BBEF217B3AAD000442DAE /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEF317B3AAD000442DAE /* Layer.h */,
+				F95BBEF417B3AAD000442DAE /* LayerManager.h */,
+				F95BBEF517B3AAD000442DAE /* ScreenManager.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		F95BBEF617B3AAD000442DAE /* LOD2D */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEF717B3AAD000442DAE /* LOD2D.h */,
+			);
+			path = LOD2D;
+			sourceTree = "<group>";
+		};
+		F95BBEF817B3AAD000442DAE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEF917B3AAD000442DAE /* NetworkBuffer.h */,
+				F95BBEFA17B3AAD000442DAE /* NetworkCenter.h */,
+				F95BBEFB17B3AAD000442DAE /* NetworkConn.h */,
+				F95BBEFC17B3AAD000442DAE /* NetworkDataRecognizer.h */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F95BBEFD17B3AAD000442DAE /* Pick */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBEFE17B3AAD000442DAE /* Pickable.h */,
+				F95BBEFF17B3AAD000442DAE /* PickableManager.h */,
+			);
+			path = Pick;
+			sourceTree = "<group>";
+		};
+		F95BBF0017B3AAD000442DAE /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF0117B3AAD000442DAE /* Plugin.h */,
+				F95BBF0217B3AAD000442DAE /* PluginManager.h */,
+				F95BBF0317B3AAD000442DAE /* PluginType.h */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		F95BBF0517B3AAD000442DAE /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF0617B3AAD000442DAE /* ProjectTrans.h */,
+				F95BBF0717B3AAD000442DAE /* ProjectTransWinkel3.h */,
+				F95BBF0817B3AAD000442DAE /* SceneCenter.h */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		F95BBF0A17B3AAD000442DAE /* Thread */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF0B17B3AAD000442DAE /* PosixThreads.h */,
+			);
+			path = Thread;
+			sourceTree = "<group>";
+		};
+		F95BBF1017B3AAD000442DAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF1117B3AAD000442DAE /* Camera2D.h */,
+				F95BBF1217B3AAD000442DAE /* Camera3D.h */,
+				F95BBF1317B3AAD000442DAE /* CameraBase.h */,
+				F95BBF1417B3AAD000442DAE /* CameraController.h */,
+				F95BBF1517B3AAD000442DAE /* OsgViewerBase.h */,
+				F95BBF1617B3AAD000442DAE /* StaticNodeGroup.h */,
+				F95BBF1717B3AAD000442DAE /* StatsHandler.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F95BBF1817B3AAD000442DAE /* PSDFViewQt */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF1917B3AAD000442DAE /* impl */,
+				F95BBF1E17B3AAD000442DAE /* PSDFViewQt.h */,
+			);
+			path = PSDFViewQt;
+			sourceTree = "<group>";
+		};
+		F95BBF1917B3AAD000442DAE /* impl */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF1A17B3AAD000442DAE /* Common.h */,
+				F95BBF1B17B3AAD000442DAE /* QGLWidgetAdapter.h */,
+				F95BBF1C17B3AAD000442DAE /* ViewerQt2D.h */,
+				F95BBF1D17B3AAD000442DAE /* ViewerQt3D.h */,
+			);
+			path = impl;
+			sourceTree = "<group>";
+		};
+		F95BBF4817B3AAE600442DAE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF4917B3AAE600442DAE /* PSDFCore */,
+				F95BBF7017B3AAE600442DAE /* PSDFViewQt */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F95BBF4917B3AAE600442DAE /* PSDFCore */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF4A17B3AAE600442DAE /* Common */,
+				F95BBF4C17B3AAE600442DAE /* Data */,
+				F95BBF4E17B3AAE600442DAE /* Event */,
+				F95BBF5117B3AAE600442DAE /* Label */,
+				F95BBF5417B3AAE600442DAE /* Layer */,
+				F95BBF5717B3AAE600442DAE /* LOD2D */,
+				F95BBF5917B3AAE600442DAE /* Network */,
+				F95BBF5D17B3AAE600442DAE /* Pick */,
+				F95BBF5F17B3AAE600442DAE /* Plugin */,
+				F95BBF6317B3AAE600442DAE /* Scene */,
+				F95BBF6717B3AAE600442DAE /* StdAfx.cpp */,
+				F95BBF6817B3AAE600442DAE /* View */,
+			);
+			path = PSDFCore;
+			sourceTree = "<group>";
+		};
+		F95BBF4A17B3AAE600442DAE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF4B17B3AAE600442DAE /* Common.cpp */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		F95BBF4C17B3AAE600442DAE /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF4D17B3AAE600442DAE /* DataCenter.cpp */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F95BBF4E17B3AAE600442DAE /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF4F17B3AAE600442DAE /* EventCenter.cpp */,
+				F95BBF5017B3AAE600442DAE /* EventStation.cpp */,
+			);
+			path = Event;
+			sourceTree = "<group>";
+		};
+		F95BBF5117B3AAE600442DAE /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF5317B3AAE600442DAE /* Label.cpp */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
+		F95BBF5417B3AAE600442DAE /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF5517B3AAE600442DAE /* LayerManager.cpp */,
+				F95BBF5617B3AAE600442DAE /* ScreenManager.cpp */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		F95BBF5717B3AAE600442DAE /* LOD2D */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF5817B3AAE600442DAE /* LOD2D.cpp */,
+			);
+			path = LOD2D;
+			sourceTree = "<group>";
+		};
+		F95BBF5917B3AAE600442DAE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF5A17B3AAE600442DAE /* NetworkBuffer.cpp */,
+				F95BBF5B17B3AAE600442DAE /* NetworkCenter.cpp */,
+				F95BBF5C17B3AAE600442DAE /* NetworkConn.cpp */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F95BBF5D17B3AAE600442DAE /* Pick */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF5E17B3AAE600442DAE /* PickableManager.cpp */,
+			);
+			path = Pick;
+			sourceTree = "<group>";
+		};
+		F95BBF5F17B3AAE600442DAE /* Plugin */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF6017B3AAE600442DAE /* PluginManager.cpp */,
+			);
+			path = Plugin;
+			sourceTree = "<group>";
+		};
+		F95BBF6317B3AAE600442DAE /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF6417B3AAE600442DAE /* ProjectTrans.cpp */,
+				F95BBF6517B3AAE600442DAE /* ProjectTransWinkel3.cpp */,
+				F95BBF6617B3AAE600442DAE /* SceneCenter.cpp */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		F95BBF6817B3AAE600442DAE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBF6917B3AAE600442DAE /* Camera2D.cpp */,
+				F95BBF6A17B3AAE600442DAE /* Camera3D.cpp */,
+				F95BBF6B17B3AAE600442DAE /* CameraBase.cpp */,
+				F95BBF6C17B3AAE600442DAE /* CameraController.cpp */,
+				F95BBF6D17B3AAE600442DAE /* OsgViewerBase.cpp */,
+				F95BBF6E17B3AAE600442DAE /* StaticNodeGroup.cpp */,
+				F95BBF6F17B3AAE600442DAE /* StatsHandler.cpp */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F95BBF7017B3AAE600442DAE /* PSDFViewQt */ = {
+			isa = PBXGroup;
+			children = (
+				F93633CD17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp */,
+				F95BBF7217B3AAE600442DAE /* QGLWidgetAdapter.cpp */,
+				F95BBF7517B3AAE600442DAE /* stdafx.cpp */,
+				F95BBF7717B3AAE600442DAE /* ViewerQt2D.cpp */,
+				F95BBF7817B3AAE600442DAE /* ViewerQt3D.cpp */,
+			);
+			path = PSDFViewQt;
+			sourceTree = "<group>";
+		};
+		F95BBFC617B3B09E00442DAE /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				F95BBFE317B3BD3600442DAE /* QtCore.framework */,
+				F95BBFE417B3BD3600442DAE /* QtGui.framework */,
+				F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */,
+				F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */,
+				F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */,
+				F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F95BBF9A17B3AB0400442DAE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F95BBFC917B3B0C400442DAE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95BBFDA17B3B4BC00442DAE /* Common.h in Headers */,
+				F95BBFDB17B3B4C500442DAE /* QGLWidgetAdapter.h in Headers */,
+				F95BBFDC17B3B4C800442DAE /* ViewerQt2D.h in Headers */,
+				F95BBFDD17B3B4CB00442DAE /* ViewerQt3D.h in Headers */,
+				F95BBFDE17B3B4CE00442DAE /* PSDFViewQt.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		F95BBF9B17B3AB0400442DAE /* PSDFCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F95BBF9D17B3AB0400442DAE /* Build configuration list for PBXNativeTarget "PSDFCore" */;
+			buildPhases = (
+				F95BBF9817B3AB0400442DAE /* Sources */,
+				F95BBF9917B3AB0400442DAE /* Frameworks */,
+				F95BBF9A17B3AB0400442DAE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PSDFCore;
+			productName = PSDFCore;
+			productReference = F95BBF9C17B3AB0400442DAE /* libPSDFCored.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		F95BBFCA17B3B0C400442DAE /* PSDFViewQt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F95BBFCC17B3B0C400442DAE /* Build configuration list for PBXNativeTarget "PSDFViewQt" */;
+			buildPhases = (
+				F95BBFE917B3BE2200442DAE /* ShellScript */,
+				F95BBFC717B3B0C400442DAE /* Sources */,
+				F95BBFC817B3B0C400442DAE /* Frameworks */,
+				F95BBFC917B3B0C400442DAE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9147AA717B4EFA90079BD89 /* PBXTargetDependency */,
+			);
+			name = PSDFViewQt;
+			productName = PSDFViewQt;
+			productReference = F95BBFCB17B3B0C400442DAE /* libPSDFViewQtd.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F90D7AF717B3A9DF00383FC2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Ymy;
+			};
+			buildConfigurationList = F90D7AFA17B3A9DF00383FC2 /* Build configuration list for PBXProject "PluginSDF" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F90D7AF617B3A9DF00383FC2;
+			productRefGroup = F90D7B0017B3A9DF00383FC2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F95BBF9B17B3AB0400442DAE /* PSDFCore */,
+				F95BBFCA17B3B0C400442DAE /* PSDFViewQt */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F95BBFE917B3BE2200442DAE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#moc -o${PROJECT_DIR}/src/PSDFViewQt/moc_QGLWidgetAdapter.cpp -fStdafx.h ${PROJECT_DIR}/include/PSDFViewQt/impl/QGLWidgetAdapter.h";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F95BBF9817B3AB0400442DAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95BBFB717B3AB3E00442DAE /* StdAfx.cpp in Sources */,
+				F95BBFA017B3AB3300442DAE /* Common.cpp in Sources */,
+				F95BBFA117B3AB3300442DAE /* DataCenter.cpp in Sources */,
+				F95BBFA217B3AB3300442DAE /* EventCenter.cpp in Sources */,
+				F95BBFA317B3AB3300442DAE /* EventStation.cpp in Sources */,
+				F95BBFA417B3AB3300442DAE /* Label.cpp in Sources */,
+				F95BBFA517B3AB3300442DAE /* LayerManager.cpp in Sources */,
+				F95BBFA617B3AB3300442DAE /* ScreenManager.cpp in Sources */,
+				F95BBFA717B3AB3300442DAE /* LOD2D.cpp in Sources */,
+				F95BBFA817B3AB3300442DAE /* NetworkBuffer.cpp in Sources */,
+				F95BBFA917B3AB3300442DAE /* NetworkCenter.cpp in Sources */,
+				F95BBFAA17B3AB3300442DAE /* NetworkConn.cpp in Sources */,
+				F95BBFAB17B3AB3300442DAE /* PickableManager.cpp in Sources */,
+				F95BBFAC17B3AB3300442DAE /* PluginManager.cpp in Sources */,
+				F95BBFAD17B3AB3300442DAE /* ProjectTrans.cpp in Sources */,
+				F95BBFAE17B3AB3300442DAE /* ProjectTransWinkel3.cpp in Sources */,
+				F95BBFAF17B3AB3300442DAE /* SceneCenter.cpp in Sources */,
+				F95BBFB017B3AB3300442DAE /* Camera2D.cpp in Sources */,
+				F95BBFB117B3AB3300442DAE /* Camera3D.cpp in Sources */,
+				F95BBFB217B3AB3300442DAE /* CameraBase.cpp in Sources */,
+				F95BBFB317B3AB3300442DAE /* CameraController.cpp in Sources */,
+				F95BBFB417B3AB3300442DAE /* OsgViewerBase.cpp in Sources */,
+				F95BBFB517B3AB3300442DAE /* StaticNodeGroup.cpp in Sources */,
+				F95BBFB617B3AB3300442DAE /* StatsHandler.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F95BBFC717B3B0C400442DAE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F95BBFD017B3B0E600442DAE /* QGLWidgetAdapter.cpp in Sources */,
+				F95BBFD117B3B0E600442DAE /* stdafx.cpp in Sources */,
+				F95BBFD217B3B0E600442DAE /* ViewerQt2D.cpp in Sources */,
+				F95BBFD317B3B0E600442DAE /* ViewerQt3D.cpp in Sources */,
+				F93633CE17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9147AA717B4EFA90079BD89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F95BBF9B17B3AB0400442DAE /* PSDFCore */;
+			targetProxy = F9147AA617B4EFA90079BD89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F90D7B0117B3A9DF00383FC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = lib;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					/opt/local/include,
+					/usr/local/include,
+					/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					lib,
+					/usr/local/lib,
+					/opt/local/lib,
+					/usr/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fPIC";
+				OTHER_LDFLAGS = (
+					"-lOpenThreadsd",
+					"-losgd",
+					"-losgDBd",
+					"-losgViewerd",
+					"-losgTextd",
+				);
+				PRODUCT_NAME = "";
+				SDKROOT = macosx10.7;
+				VALID_ARCHS = x86_64;
+			};
+			name = Debug;
+		};
+		F90D7B0217B3A9DF00383FC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = lib;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEPLOYMENT_POSTPROCESSING = NO;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = NDEBUG;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					include,
+					/opt/local/include,
+					/usr/local/include,
+					/usr/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					lib,
+					/usr/local/lib,
+					/opt/local/lib,
+					/usr/lib,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fPIC";
+				OTHER_LDFLAGS = (
+					"-lOpenThreads",
+					"-losg",
+					"-losgDB",
+					"-losgViewer",
+					"-losgText",
+				);
+				SDKROOT = macosx10.7;
+				VALID_ARCHS = x86_64;
+			};
+			name = Release;
+		};
+		F95BBF9E17B3AB0400442DAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = lib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					PSDF_CORE_EXPORTS,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)d";
+			};
+			name = Debug;
+		};
+		F95BBF9F17B3AB0400442DAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CONFIGURATION_BUILD_DIR = lib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					PSDF_CORE_EXPORTS,
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F95BBFCD17B3B0C400442DAE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CONFIGURATION_BUILD_DIR = lib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					PSDF_VIEWQT_EXPORTS,
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lOpenThreadsd",
+					"-losgd",
+					"-losgDBd",
+					"-losgViewerd",
+					"-losgGAd",
+					"-losgTextd",
+					"-lPSDFCored",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)d";
+				SDKROOT = macosx10.7;
+			};
+			name = Debug;
+		};
+		F95BBFCE17B3B0C400442DAE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CONFIGURATION_BUILD_DIR = lib;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					PSDF_VIEWQT_EXPORTS,
+					NDEBUG,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				OTHER_LDFLAGS = (
+					"-lOpenThreads",
+					"-losg",
+					"-losgDB",
+					"-losgViewer",
+					"-losgText",
+					"-losgGA",
+					"-lPSDFCore",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F90D7AFA17B3A9DF00383FC2 /* Build configuration list for PBXProject "PluginSDF" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F90D7B0117B3A9DF00383FC2 /* Debug */,
+				F90D7B0217B3A9DF00383FC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F95BBF9D17B3AB0400442DAE /* Build configuration list for PBXNativeTarget "PSDFCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F95BBF9E17B3AB0400442DAE /* Debug */,
+				F95BBF9F17B3AB0400442DAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F95BBFCC17B3B0C400442DAE /* Build configuration list for PBXNativeTarget "PSDFViewQt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F95BBFCD17B3B0C400442DAE /* Debug */,
+				F95BBFCE17B3B0C400442DAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F90D7AF717B3A9DF00383FC2 /* Project object */;
+}
