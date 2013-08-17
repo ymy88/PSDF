@@ -13,6 +13,8 @@
 #include <QtGui/QKeyEvent>
 #include <QtOpenGL/QGLWidget>
 
+using namespace Qt;
+
 #ifdef _WIN32
 #	ifdef _DEBUG
 #		pragma comment(lib, "QtOpenGLd4.lib")
