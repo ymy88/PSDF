@@ -1,4 +1,4 @@
-/* -*-c++-*- OpenSceneGraph - Copyright (C) 1998-2006 Robert Osfield
+/*  -*-c++-*- OpenSceneGraph - Copyright (C) 1998-2006 Robert Osfield
  *
  * This library is open source and may be redistributed and/or modified under
  * the terms of the OpenSceneGraph Public License (OSGPL) version 0.0 or
@@ -9,7 +9,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * OpenSceneGraph Public License for more details.
-*/
+ */
 
 #include "StdAfx.h"
 
@@ -250,7 +250,7 @@ struct AveragedValueTextDrawCallback : public virtual osg::Drawable::DrawCallbac
     {
     }
 
-    /** do customized draw code.*/
+    /* * do customized draw code. */
     virtual void drawImplementation(osg::RenderInfo& renderInfo,const osg::Drawable* drawable) const
     {
         osgText::Text* text = (osgText::Text*)drawable;
@@ -293,7 +293,7 @@ struct CameraSceneStatsTextDrawCallback : public virtual osg::Drawable::DrawCall
     {
     }
 
-    /** do customized draw code.*/
+    /* * do customized draw code. */
     virtual void drawImplementation(osg::RenderInfo& renderInfo,const osg::Drawable* drawable) const
     {
         if (!_camera) return;
@@ -382,7 +382,7 @@ struct ViewSceneStatsTextDrawCallback : public virtual osg::Drawable::DrawCallba
     {
     }
 
-    /** do customized draw code.*/
+    /* * do customized draw code. */
     virtual void drawImplementation(osg::RenderInfo& renderInfo,const osg::Drawable* drawable) const
     {
         if (!_view) return;
@@ -474,7 +474,7 @@ struct BlockDrawCallback : public virtual osg::Drawable::DrawCallback
         _frameDelta(frameDelta),
         _numFrames(numFrames) {}
 
-    /** do customized draw code.*/
+    /* * do customized draw code. */
     virtual void drawImplementation(osg::RenderInfo& renderInfo,const osg::Drawable* drawable) const
     {
         osg::Geometry* geom = (osg::Geometry*)drawable;
@@ -734,7 +734,7 @@ struct FrameMarkerDrawCallback : public virtual osg::Drawable::DrawCallback
         _frameDelta(frameDelta),
         _numFrames(numFrames) {}
 
-    /** do customized draw code.*/
+    /* * do customized draw code. */
     virtual void drawImplementation(osg::RenderInfo& renderInfo,const osg::Drawable* drawable) const
     {
         osg::Geometry* geom = (osg::Geometry*)drawable;

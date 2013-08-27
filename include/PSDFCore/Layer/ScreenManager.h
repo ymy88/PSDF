@@ -43,9 +43,11 @@ public:
 
 	void				setRoot(Group* root) { root->addChild(_hudCamra); }
 
-	// 如果restriction为SCREEN_LEFT_TOP，则dist1为node包围盒中心与窗口左边界的距离，dist2为node包围盒中心与窗口上边界的距离。
-	// 如果restriction为SCREEN_LEFT_CENTER，则dist2忽略。
-	// 其它以此类推
+	/* 
+	 * 如果restriction为SCREEN_LEFT_TOP，则dist1为node包围盒中心与窗口左边界的距离，dist2为node包围盒中心与窗口上边界的距离。
+	 * 如果restriction为SCREEN_LEFT_CENTER，则dist2忽略。
+	 * 其它以此类推
+	  */
 	void				addScreenItem(Node* node, ScreenRestriction restriction, int dist1, int dist2);
 
 	void				handleSystemEvent( unsigned eventType, int param1, int param2 );

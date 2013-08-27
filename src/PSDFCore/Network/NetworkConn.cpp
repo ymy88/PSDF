@@ -11,7 +11,7 @@ using namespace boost::asio;
 //----------------------------------------
 // NetConnection
 //----------------------------------------
-NetworkConn::NetworkConn( NetworkDataRecognizer* dataRecognizer /*= NULL*/ ) :
+NetworkConn::NetworkConn( NetworkDataRecognizer* dataRecognizer /* = NULL */ ) :
 _dataRecognizer(dataRecognizer), _buffer(onReceive)
 {
 	_receivedCount = 0;
@@ -67,7 +67,7 @@ Multicast::Multicast( const string& ipAddr, unsigned short recvPort, NetworkData
 
 bool Multicast::joinGroup( const string& ipAddr, unsigned short recvPort )
 {
-	ip::address listenAddress = ip::address::from_string("0.0.0.0"); // any address
+	ip::address listenAddress = ip::address::from_string("0.0.0.0"); /* any address */
 
 	_recvPort = recvPort;
 	ip::udp::endpoint listenEndpoint(listenAddress, recvPort);
@@ -78,7 +78,7 @@ bool Multicast::joinGroup( const string& ipAddr, unsigned short recvPort )
 		_socket.set_option(ip::udp::socket::reuse_address(true));
 		_socket.bind(listenEndpoint);
 
-		// join the multicast group
+		/* join the multicast group */
 		_address = ip::address::from_string(ipAddr);
 		_socket.set_option(ip::multicast::join_group(_address));
 

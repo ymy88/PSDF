@@ -2,7 +2,7 @@
 
 #include "../Common/Common.h"
 
-//œ˚œ¢”≈œ»º∂±
+
 enum EVENT_PRIORITY_LEVEL
 {
 	PRIORITY_LOW = 0,
@@ -15,7 +15,7 @@ enum EVENT_PRIORITY_LEVEL
 const string		FROM_SYSTEM					= "System";
 const string		TO_ALL_MODULES				= "All modules";
 
-/*
+/* 
     Each event type (32 bits) consists of two parts:
     1. Event group type (28 bits)
     2. Event type within the group (4 bits)
@@ -25,7 +25,7 @@ const string		TO_ALL_MODULES				= "All modules";
     within group counts from 0x1 to 0xf.
 
 	At most 28 event group types are supported
-*/
+ */
 
 
 const unsigned int	EVENT_STATION_ID_NON_VIEW	= 0x00000001;
@@ -35,7 +35,7 @@ const unsigned int	EVENT_GROUP_BASE				= 0x00000008;
 const unsigned int	EVENT_GROUP_ALL					= 0xFFFFFFF8;
 const short			EVENT_GROUP_COUNT				= 29;
 
-// get the event cluster type from a event type
+/* get the event cluster type from a event type */
 inline unsigned int getEventGroup( unsigned int eventType )
 {
 	return ( eventType & EVENT_GROUP_ALL );
@@ -119,9 +119,10 @@ inline unsigned int PSDF_CORE_DLL_DECL generateCustomEventGroup()
 
 
 
-/*
+/* 
     **   Note   **
-  –Ë“™◊‘∂®“Âœ˚œ¢◊Èº∞œ˚œ¢¿‡–Õ ±£¨Ω®“È π”√»Áœ¬∏Ò Ω£∫
+  Custom event type should obey the above principle.
+  The following format is recommended
   
   header file:
   extern const unsigned int MY_GROUP;
@@ -132,4 +133,4 @@ inline unsigned int PSDF_CORE_DLL_DECL generateCustomEventGroup()
   const unsigned int MY_GROUP = generateCustomGroup();
   const unsigned int     MY_EVENT1 = MY_GROUP | 0;
   const unsigned int     MY_EVENT2 = MY_GROUP | 1;
-*/
+ */

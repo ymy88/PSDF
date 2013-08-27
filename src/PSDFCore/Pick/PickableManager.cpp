@@ -99,7 +99,7 @@ void PickableManager::onLButtonUp( short mouseScrX, short mouseScrY )
 {
 	if( _currPicked == NULL ) { return; }
 
-	// Dragging just happened.
+	/* Dragging just happened. */
 	if( _dragging )
 	{
 		_currPicked = NULL;
@@ -111,7 +111,7 @@ void PickableManager::onLButtonUp( short mouseScrX, short mouseScrY )
 		return;
 	}
 
-	// Dragging not happened, just pick.
+	/* Dragging not happened, just pick. */
 	if( _currPicked )
 	{
 		_currPicked->onPick(mouseScrX, mouseScrY);

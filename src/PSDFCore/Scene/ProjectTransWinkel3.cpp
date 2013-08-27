@@ -103,7 +103,6 @@ void ProjectTransWinkel3::XYToLL( double x, double y, double &longitude, double 
 	double xx = abs( x );
 	double yy = abs( y + y0 );
 	double dx, dy;
-	//double dj, dw;
 	double newx, newy;
 
     double oldcenj = _centerLong;
@@ -132,7 +131,6 @@ void ProjectTransWinkel3::XYToLL( double x, double y, double &longitude, double 
 		dx = xx - newx;
 		dy = yy - newy;
 		nCount++;
-        //ASSERT_MESSAGE((nCount < 15),"叠代发散");
         if(nCount >= 15) break;
     }
     setCenter( oldcenj, oldcenw, _centerAlt );

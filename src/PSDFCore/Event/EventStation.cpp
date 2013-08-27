@@ -33,7 +33,7 @@ void EventStation::EventStationDispatcher::manuallyRun()
 	{
 		if( !peekEvent( eventType, param1, param2, false ) )
 		{
-			//if queue is empty, quit
+			/* if queue is empty, quit */
 			break;
 		}
 
@@ -84,7 +84,7 @@ void EventStation::EventStationDispatcher::dispatchEvent( unsigned eventType, in
 		return;
 	}
 
-	// find the corresponding handler queue
+	/* find the corresponding handler queue */
 	int n;
 
 	for( n = 0; n < EVENT_GROUP_COUNT; n++ )
@@ -97,9 +97,11 @@ void EventStation::EventStationDispatcher::dispatchEvent( unsigned eventType, in
 
 	const vector< EventHandler*> &handlers = _station->_eventHandlerQueues[n].beginUpdate();
 
-	// 在本次消息处理过程中新加入的handler不接收正在处理的消息
-	// 故使用：for( int i = 0; i < size; i++ )
-	// 而非：for( int i = 0; i < handlers.size(); i++ )
+	/* 
+	 * 在本次消息处理过程中新加入的handler不接收正在处理的消息
+	 * 故使用：for( int i = 0; i < size; i++ )
+	 * 而非：for( int i = 0; i < handlers.size(); i++ )
+	  */
 	int size = handlers.size();
 	for( int i = 0; i < size; i++ )
 	{
@@ -142,7 +144,7 @@ const vector< EventHandler * >& EventStation::EventHandlerQueue::beginUpdate()
 
 	solvePending();
 
-	_handlersLock.unlock();  // unlock for write
+	_handlersLock.unlock();  /* unlock for write */
 
 	_handlersLock.lockForRead();
 	
@@ -151,7 +153,7 @@ const vector< EventHandler * >& EventStation::EventHandlerQueue::beginUpdate()
 
 void EventStation::EventHandlerQueue::endUpdate()
 {
-	_handlersLock.unlock();  // unlock for read
+	_handlersLock.unlock();  /* unlock for read */
 }
 
 void EventStation::EventHandlerQueue::addHandler( EventHandler * handler )
@@ -193,7 +195,7 @@ void EventStation::EventHandlerQueue::removeHandler( EventHandler* handler )
 	{
 		if( handler == ( *it ) )
 		{
-			/*
+			/* 
 				We don't use erase() because the erase()
 				function will literaly remove an element
 				from the vector. Thus in the dispachEvent()
@@ -201,7 +203,7 @@ void EventStation::EventHandlerQueue::removeHandler( EventHandler* handler )
 				itself, the next handler will be skipped
 				during the dispatch process because of the
 				erase() function.
-			*/
+			 */
 			( *it ) = NULL;
 			break;
 		}
@@ -215,7 +217,7 @@ void EventStation::EventHandlerQueue::removeHandler( EventHandler* handler )
 		{
 			it2 = _pendingHandlers.erase(it2);
 
-			// there may exist duplicated pending handlers
+			/* there may exist duplicated pending handlers */
 		}
 		else
 		{
@@ -291,13 +293,13 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 
 	_nextStationId <<= 1;
 
-	//非视窗的消息站
+	/* 非视窗的消息站 */
 	if( _stationId == EVENT_STATION_ID_NON_VIEW )
 	{
 		//_dispatcherCount = 10;
 		_dispatcherCount = 1;
 	}
-	//视窗的消息站
+	/* 视窗的消息站 */
 	else
 	{
 		_dispatcherCount = 1;	
@@ -312,12 +314,14 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 
 
 
-	// If the event station belongs to a view,
-	//		then the dispatch process is activated manually before every frame, in main thread of the view.
-	// Else if the event station doesn't belong to any view, 
-	//		then the dispatch process is automatically activated every few millisecond, in separate threads.
+	/* 
+	 * If the event station belongs to a view,
+	 *		then the dispatch process is activated manually before every frame, in main thread of the view.
+	 * Else if the event station doesn't belong to any view, 
+	 *		then the dispatch process is automatically activated every few millisecond, in separate threads.
+	  */
 	
-	//非视窗的消息站启动消息投递分发线程
+	/* 非视窗的消息站启动消息投递分发线程 */
 	if( _stationId == EVENT_STATION_ID_NON_VIEW )
 	{
 		for( int i = 0; i < _dispatcherCount; i++ )
@@ -347,7 +351,7 @@ EventStation::~EventStation()
 	delete [] _dispatchers;
 }
 
-//二级消息中心(消息站)将消息处理者添加到消息处理者队列
+/* 二级消息中心(消息站)将消息处理者添加到消息处理者队列 */
 void EventStation::registerHandler( EventHandler * handler, unsigned eventGroupMask )
 {
 	for( short i = 0; i < EVENT_GROUP_COUNT; i++ )
@@ -398,7 +402,7 @@ void EventStation::triggerEvent( unsigned eventType, int param1, int param2, boo
 	_triggerCount++;
 }
 
-//视窗消息站手动消息投递分发
+/* 视窗消息站手动消息投递分发 */
 void EventStation::manuallyDispatchEvent()
 {
 	if( _dispatcherCount != 1 )
@@ -406,7 +410,7 @@ void EventStation::manuallyDispatchEvent()
 		return;
 	}
 
-	_dispatchers[ 0 ].manuallyRun();
+	_dispatchers[0].manuallyRun();
 }
 
 void EventStation::outputLog( ofstream& fout )

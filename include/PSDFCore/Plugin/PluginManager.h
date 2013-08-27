@@ -8,7 +8,7 @@
 
 using namespace boost::extensions;
 
-//插件加载管理类
+/* 插件加载管理类 */
 class PSDF_CORE_DLL_DECL PluginManager
 {
 private:

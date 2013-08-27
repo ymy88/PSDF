@@ -21,7 +21,7 @@ void Camera2D::adjustCamera( int viewWidth, int viewHeight )
 	_streetViewAngle = 0;
 	CameraBase::adjustCamera(viewWidth, viewHeight);
 
-	// 将Base point与At point拉开点距离，方便矩阵操作
+	/* 将Base point与At point拉开点距离，方便矩阵操作 */
 	_cameraController.translateCamera(Vec3d(0, 0, -1), COORD_TYPE_WORLD, BASE_POINT);
 }
 
@@ -30,7 +30,7 @@ void Camera2D::reset()
 	_streetViewAngle = 0;
 	CameraBase::reset();
 
-	// 将Base point与At point拉开点距离，方便矩阵操作
+	/* 将Base point与At point拉开点距离，方便矩阵操作 */
 	_cameraController.translateCamera(Vec3d(0, 0, -1), COORD_TYPE_WORLD, BASE_POINT);
 }
 
@@ -40,11 +40,11 @@ void Camera2D::setCameraPositionAndRange(double centerX, double centerY, double 
 	double viewHeight = getViewport()->height();
 
 	double newDist;
-	if (viewHeight > viewWidth) // 以给定矩形的宽度为准进行缩放
+	if (viewHeight > viewWidth) /* 以给定矩形的宽度为准进行缩放 */
 	{
 		newDist = range * viewHeight / viewWidth * 0.5 / TAN_CAMERA_FOV_2;
 	}
-	else                 // 以给定矩形的高度为准进行缩放
+	else                 /* 以给定矩形的高度为准进行缩放 */
 	{
 		newDist = range * 0.5 / TAN_CAMERA_FOV_2;
 	}
@@ -77,7 +77,7 @@ void Camera2D::moveCamera(short currMouseX, short currMouseY)
 
 void Camera2D::translateCamera( short currMouseX, short currMouseY )
 {
-	//计算鼠标按下时世界坐标与当前点世界坐标的偏移量
+	/* 计算鼠标按下时世界坐标与当前点世界坐标的偏移量 */
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
 	screenToWorld(currMouseX, currMouseY, currMouseWorld);
@@ -85,13 +85,13 @@ void Camera2D::translateCamera( short currMouseX, short currMouseY )
 	Vec3d finalVec = _cameraController.switchCoordinateSystem_vector(diff, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 	finalVec.z() = 0;
 
-	//移动视点位置
+	/* 移动视点位置 */
 	_cameraController.translateCamera(finalVec, COORD_TYPE_WORLD, ALL_POINTS);
 }
 
 void Camera2D::rotateCamera( short currMouseX, short currMouseY )
 {
-	// 绕观察点旋转
+	/* 绕观察点旋转 */
 	
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
@@ -115,7 +115,7 @@ void Camera2D::rotateCamera( short currMouseX, short currMouseY )
 
 void Camera2D::rotateCameraStreetView(short currMouseX, short currMouseY)
 {
-	static double maxAngle = PI_2 - 1 / 180.0; // 89度
+	static double maxAngle = PI_2 - 1 / 180.0; /* 89度 */
 
 	double angle = (currMouseY - _lastMouseY) * 1e-2;
 	if (_streetViewAngle + angle > maxAngle)
@@ -194,7 +194,7 @@ double Camera2D::getViewportYRangeInWorld()
 
 void Camera2D::onFly()
 {
-	// 若当前正在跟随物体，先将相机重置成对准地面
+	/* 若当前正在跟随物体，先将相机重置成对准地面 */
 	Vec3d sight = _cameraController.getCurrAt() - _cameraController.getCurrEye();
 	if (sight.x() > 1e-8 || sight.y() > 1e-8)
 	{
@@ -206,7 +206,7 @@ void Camera2D::onFly()
 	Vec3d targetLoc = _target.location;
 	Vec3d currAt = _cameraController.getCurrAt();
 
-	// 移动相机到目标
+	/* 移动相机到目标 */
 	Vec3d step = (targetLoc - currAt) * _flyRate;
 	if (step.length2() < 0.1)
 	{
@@ -218,7 +218,7 @@ void Camera2D::onFly()
 	currAt = _cameraController.getCurrAt();
 
 
-	// 缩放到合适位置
+	/* 缩放到合适位置 */
 	Vec3d currEye = _cameraController.getCurrEye();
 	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 
@@ -245,7 +245,7 @@ void Camera2D::onFollow()
 	targetLoc.z() = 0;
 	Vec3d currAt = _cameraController.getCurrAt();
 
-	// 移动相机到目标
+	/* 移动相机到目标 */
 	Vec3d step = targetLoc - currAt;
 	if (step.length2() > 1)
 	{
@@ -266,7 +266,7 @@ void Camera2D::onFollow()
 		return;
 	}
 
-	// 缩放到合适位置
+	/* 缩放到合适位置 */
 	Vec3d currEye = _cameraController.getCurrEye();
 	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 
@@ -294,7 +294,7 @@ void Camera2D::onFlyBack()
 
 	double flyBackRate = _flyRate * 2;
 
-	// 旋转Eye point
+	/* 旋转Eye point */
 	Vec3d z = Vec3d(0, 0, 1);
 	Vec3d zAt = _cameraController.switchCoordinateSystem_vector(z, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 
@@ -305,7 +305,7 @@ void Camera2D::onFlyBack()
 	if (abs(angle) > 1e-8)
 	{
 		double step;
-		if (angle < 1 * PI / 180) // 2度
+		if (angle < 1 * PI / 180) /* 2度 */
 		{
 			step = angle;
 		}
@@ -324,7 +324,7 @@ void Camera2D::onFlyBack()
 		done = false;
 	}
 
-	// 旋转up向量使得上方朝北
+	/* 旋转up向量使得上方朝北 */
 	Vec3d upWorld = _cameraController.getCurrUp();
 	upWorld .z() = 0;
 	upWorld .normalize();

@@ -63,7 +63,7 @@ void QGLWidgetAdapter::mousePressEvent( QMouseEvent* event )
 		return;
 	}
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( eventType, createParam( event->x(), event->y() ), mod, getStationId() );
 
 	emit mousePressSignal(event);
@@ -90,7 +90,7 @@ void QGLWidgetAdapter::mouseReleaseEvent( QMouseEvent *event )
 		return;
 	}
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( eventType, createParam( event->x(), event->y() ), mod, getStationId() );
 
 	emit mouseReleaseSignal(event);
@@ -114,7 +114,7 @@ void QGLWidgetAdapter::mouseDoubleClickEvent( QMouseEvent *event )
 		return;
 	}
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( eventType, createParam( event->x(), event->y() ), mod, getStationId() );
 
 	emit mouseDoubleClickSignal(event);
@@ -126,7 +126,7 @@ void QGLWidgetAdapter::mouseMoveEvent( QMouseEvent *event )
 
 	unsigned eventType = MOUSE_MOVE;
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( eventType, createParam( event->x(), event->y() ), mod, getStationId() );
 
 	emit mouseMoveSignal(event);
@@ -155,7 +155,7 @@ void QGLWidgetAdapter::wheelEvent( QWheelEvent *event )
 		eventType = SCROLL_DOWN;
 	}
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( eventType, delta, mod, getStationId() );	
 
 	emit wheelSignal(event);
@@ -170,7 +170,7 @@ void QGLWidgetAdapter::keyPressEvent( QKeyEvent* event )
 
 	int mod = event->modifiers();
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( KEY_DOWN, event->key(), mod, getStationId() );
 
 	emit keyPressSignal(event);
@@ -185,7 +185,7 @@ void QGLWidgetAdapter::keyReleaseEvent( QKeyEvent *event )
 
 	int mod = event->modifiers();
 	
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( KEY_UP, event->key(), mod, getStationId() );
 
 	emit keyReleaseSignal(event);
@@ -195,7 +195,7 @@ void QGLWidgetAdapter::focusInEvent( QFocusEvent *event )
 {
 	this->setFocused();
 
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( FOCUS_IN, 0, 0, getStationId() );
 
 	emit focusInSignal(event);
@@ -203,7 +203,7 @@ void QGLWidgetAdapter::focusInEvent( QFocusEvent *event )
 
 void QGLWidgetAdapter::focusOutEvent( QFocusEvent *event )
 {
-	//发送系统消息
+	/* 发送系统消息 */
 	EventCenter::inst()->triggerEvent( FOCUS_OUT, 0, 0, getStationId() );
 
 	emit focusOutSignal(event);

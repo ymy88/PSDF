@@ -28,10 +28,10 @@ private:
 	public:
 		virtual void		run();
 
-		//消息读取
+		/* 消息读取 */
 		bool				peekEvent( unsigned int &eventType, int &param1, int &param2, unsigned int &stationId, bool& isHighPriority );
 
-		//消息分发
+		/* 消息分发 */
 		void				dispatchEvent( unsigned int eventType, int param1, int param2, unsigned int stationId, bool isHighPriority ); 
 
 	public:
@@ -54,7 +54,7 @@ public:
 	void						registerHandler( EventHandler * handler, unsigned int eventGroupMask, unsigned int stationId = EVENT_STATION_ID_NON_VIEW );
 	void						unregisterHandler( EventHandler * handler, unsigned int eventGroupMask, unsigned int stationId = EVENT_STATION_ID_NON_VIEW );
 
-	/*
+	/* 
 	 * eventType	: Type of this event. (see EventType.h)
 	 * param1		: A 32-bit params of the event. (see EventType.h) 
 	 * param2		: A 32-bit params of the event. (see EventType.h) 
@@ -71,8 +71,8 @@ public:
 	void						outputLog(ofstream& fout);
 
 private:
-	//消息中心消息队列 Event queue
-	//消息等级按照优先级分为四级，每级可存储100条消息	
+	/* 消息中心消息队列 Event queue */
+	/* 消息等级按照优先级分为四级，每级可存储100条消息 */
 	EventCenterStruct			_centerEventQueue[ PRIORITY_LEVEL_COUNT ][ EVENT_CENTER_QUEUE_LENGTH ];
 	short						_putPos[ PRIORITY_LEVEL_COUNT ];
 	short						_getPos[ PRIORITY_LEVEL_COUNT ];
@@ -80,11 +80,11 @@ private:
 	PosixSemaphore *			_pUsedSem[ PRIORITY_LEVEL_COUNT ];
 	PosixMutex					_eventQueueMutex;
 	
-	EventCenterDispatcher		_dispatcher;							//消息中心消息投递线程
+	EventCenterDispatcher		_dispatcher;		/* 消息中心消息投递线程 */
 
-	vector< EventStation * >	_eventStations;						//消息站容器,存储所有视窗的消息站和非视窗消息站
-	EventStation *				_focusedStation;						//焦点所在视窗口消息站
-	EventStation *				_nonViewStation;						//非视窗口消息站
+	vector< EventStation * >	_eventStations;		/* 消息站容器,存储所有视窗的消息站和非视窗消息站 */
+	EventStation *				_focusedStation;	/* 焦点所在视窗口消息站 */
+	EventStation *				_nonViewStation;	/* 非视窗口消息站 */
 	
 	int							_triggerCount;
 	int							_dispatchCount;

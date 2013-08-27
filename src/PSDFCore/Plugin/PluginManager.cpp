@@ -87,7 +87,7 @@ void PluginManager::loadPlugin( const string& filePath, DisplayMode displayMode,
 	{
 		shared_library lib( filePath );
 		
-		//插件库打开失败
+		/* 插件库打开失败 */
 		if( !lib.open() ) { return; }
 
 		boost::function< Plugin * () > func( lib.get< Plugin * >( "createPlugin" ) );
@@ -100,17 +100,17 @@ void PluginManager::loadPlugin( const string& filePath, DisplayMode displayMode,
 
 		unsigned int pluginType;	
 		
-		//获取插件类型
+		/* 获取插件类型 */
 		pluginType = plugin->getPluginType();
 		
-		//普通模块插件
+		/* 普通模块插件 */
 		if( pluginType == PLUGIN_MODULE )
 		{		
 			plugin->initPlugin();
 
 			_plugins.push_back( plugin );
 		}
-		//视窗图层插件
+		/* 视窗图层插件 */
 		else if( pluginType == PLUGIN_LAYER )
 		{
 			loadLayerPlugin( plugin, displayMode, viewTypes );
@@ -124,10 +124,10 @@ void PluginManager::loadPlugin( const string& filePath, DisplayMode displayMode,
 
 void PluginManager::loadLayerPlugin( Plugin * plugin, DisplayMode displayMode, const set<string>& viewTypes )
 {
-	//转换为图层插件指针
+	/* 转换为图层插件指针 */
 	LayerPlugin * layerPlugin = static_cast< LayerPlugin * >( plugin );
 
-	//获取所有视窗窗口指针
+	/* 获取所有视窗窗口指针 */
 	vector< OsgViewerBase * > allViewers = OsgViewerBase::getAllViewers();
 	
 	bool findWindow = false;
@@ -136,17 +136,17 @@ void PluginManager::loadLayerPlugin( Plugin * plugin, DisplayMode displayMode, c
 		DisplayMode currDisplayMode = allViewers[i]->getDisplayMode();
 		string currViewType = allViewers[i]->getViewType();
 
-		//判断获取视窗是否支持插件图层显示
+		/* 判断获取视窗是否支持插件图层显示 */
 		if( (displayMode == MODE_BOTH || displayMode == currDisplayMode) &&
 			(viewTypes.find(currViewType) != viewTypes.end()))
 		{
-			//将该视窗设置为图层插件的所属父视窗
+			/* 将该视窗设置为图层插件的所属父视窗 */
 			layerPlugin->addParentViewer( allViewers[i] );
 			findWindow = true;
 		}
 	}
 
-	//保存插件库到缓存区
+	/* 保存插件库到缓存区 */
 	if (findWindow)
 	{
 		bool res = layerPlugin->initPlugin();

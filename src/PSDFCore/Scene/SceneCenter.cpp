@@ -12,9 +12,9 @@ SceneCenter * SceneCenter::inst()
 
 SceneCenter::SceneCenter()
 {
-	_centerLon = 0.0;					//屏幕场景中心经度
+	_centerLon = 0.0;					/* 屏幕场景中心经度 */
 
-	_centerLat = 0.0;						//屏幕场景中心纬度
+	_centerLat = 0.0;					/* 屏幕场景中心纬度 */
 
 	_projectTrans = NULL;
 
@@ -50,7 +50,7 @@ void SceneCenter::XYToLL( double x, double y, double &longitude, double &latitud
 }
 
 
-void SceneCenter::setProjectMode( unsigned char mode /*= PROJECT_MODE_LONLAT */ )
+void SceneCenter::setProjectMode( unsigned char mode /* = PROJECT_MODE_LONLAT  */ )
 {
 	if (_projectTrans != NULL)
 	{

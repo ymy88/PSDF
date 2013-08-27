@@ -4,9 +4,9 @@
 #include "../Thread/PosixThreads.h"
 #include "NetworkDataRecognizer.h"
 
-const unsigned int NETWORK_BUFFER_LENGTH = 1 << 23;				  // 8M
-const unsigned int BUFFER_BEGIN_INDEX	 = 1 << 20;				  // 缓冲区开头预留1M
-const unsigned int BUFFER_END_INDEX		 = (1 << 22) - (1 << 20); // 缓冲区尾部预留1M
+const unsigned int NETWORK_BUFFER_LENGTH = 1 << 23;				  /* 8M */
+const unsigned int BUFFER_BEGIN_INDEX	 = 1 << 20;				  /* 缓冲区开头预留1M */
+const unsigned int BUFFER_END_INDEX		 = (1 << 22) - (1 << 20); /* 缓冲区尾部预留1M */
 
 class NetworkConn;
 

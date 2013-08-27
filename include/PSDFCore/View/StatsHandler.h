@@ -1,4 +1,4 @@
-/* -*-c++-*- OpenSceneGraph - Copyright (C) 1998-2006 Robert Osfield 
+/*  -*-c++-*- OpenSceneGraph - Copyright (C) 1998-2006 Robert Osfield 
 *
 * This library is open source and may be redistributed and/or modified under  
 * the terms of the OpenSceneGraph Public License (OSGPL) version 0.0 or 
@@ -9,7 +9,7 @@
 * but WITHOUT ANY WARRANTY; without even the implied warranty of
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
 * OpenSceneGraph Public License for more details.
-*/
+ */
 
 #pragma once
 
@@ -29,7 +29,7 @@ using namespace osgViewer;
 
 class OsgViewerBase;
 
-/** Event handler for adding on screen stats reporting to Viewers.*/
+/*  Event handler for adding on screen stats reporting to Viewers. */
 class PSDF_CORE_DLL_DECL StatsHandler : public EventHandler
 {
     public: 

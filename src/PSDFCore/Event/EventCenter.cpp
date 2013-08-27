@@ -28,7 +28,7 @@ void EventCenter::EventCenterDispatcher::run()
 
 bool EventCenter::EventCenterDispatcher::peekEvent( unsigned int &eventType, int &param1, int &param2, unsigned int &stationId, bool& isHighPriority )
 {
-	//优先级最高的最先投递分发
+	/* 优先级最高的最先投递分发 */
 	for( int pl = PRIORITY_HIGH; pl >= PRIORITY_LOW; --pl )
 	{
 		if( _eventCenter->_pUsedSem[ pl ]->tryAcquire() )
@@ -99,10 +99,10 @@ EventCenter::EventCenter()
 		_pUsedSem[ i ] = new PosixSemaphore();
 	}
 	
-	//消息中心初始化就创建非视窗的消息站，非视窗的消息站编号为0x000000001
+	/* 消息中心初始化就创建非视窗的消息站，非视窗的消息站编号为0x000000001 */
 	_nonViewStation = new EventStation(EVENT_STATION_ID_NON_VIEW);
 
-	//将非视窗的消息站添加到消息中心的消息站容器中	
+	/* 将非视窗的消息站添加到消息中心的消息站容器中 */
 	_eventStations.push_back( _nonViewStation );
 	
 	_dispatcher._eventCenter = this;
@@ -135,7 +135,7 @@ EventCenter::~EventCenter(void)
 
 void EventCenter::registerStation( EventStation * station )
 {
-	// this stationId is reserved to serve the modules which don't belong to any viewers.
+	/* this stationId is reserved to serve the modules which don't belong to any viewers. */
 	if( station->getStationId() == EVENT_STATION_ID_NON_VIEW ) 
 	{
 		return;
@@ -160,8 +160,8 @@ void EventCenter::unregisterStation( EventStation * station )
 
 void EventCenter::registerHandler( EventHandler * handler, unsigned int eventGroupMask, unsigned int stationId )
 {
-	//消息处理者向消息中心注册消息,消息中心将消息处理者指派到二级消息中心(消息站)
-	//二级消息中心(消息站)将消息处理者添加到消息处理者队列
+	/* 消息处理者向消息中心注册消息,消息中心将消息处理者指派到二级消息中心(消息站) */
+	/* 二级消息中心(消息站)将消息处理者添加到消息处理者队列 */
 
 	for( unsigned int i = 0; i < _eventStations.size(); ++i )
 	{
@@ -192,7 +192,7 @@ void EventCenter::triggerEvent( unsigned int eventType, int param1, int param2, 
 		return;
 	}
 
-	// event is not very important, can be ignored if the queue is full
+	/* event is not very important, can be ignored if the queue is full */
 	if( priority <= PRIORITY_NORMAL )
 	{
 		if( !_pFreeSem[ priority ]->tryAcquire() )
@@ -200,7 +200,7 @@ void EventCenter::triggerEvent( unsigned int eventType, int param1, int param2, 
 			return;
 		}
 	}
-	// event is important, can NOT be ignored EVEN IF the queue is full
+	/* event is important, can NOT be ignored EVEN IF the queue is full */
 	else
 	{
 		_pFreeSem[ priority ]->acquire();

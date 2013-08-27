@@ -184,7 +184,7 @@ Geometry * StaticNodeGroup::createGeometry( Texture2D * texture, double x1, doub
 
 	geom->setSupportsDisplayList(true);
 
-	//设置纹理数据坐标
+	/* 设置纹理数据坐标 */
 	vertices->push_back( osg::Vec3( x1, y1, 0 ) );
 	vertices->push_back( osg::Vec3( x2, y1, 0 ) );
 	vertices->push_back( osg::Vec3( x1, y2, 0 ) );
@@ -192,7 +192,7 @@ Geometry * StaticNodeGroup::createGeometry( Texture2D * texture, double x1, doub
 
 	geom->setVertexArray( vertices );	
 
-	//设置纹理映射坐标
+	/* 设置纹理映射坐标 */
 	texcoords->push_back( osg::Vec2( 0.0f, 0.0f ) );
 	texcoords->push_back( osg::Vec2( 1.0f, 0.0f ) );
 	texcoords->push_back( osg::Vec2( 0.0f, 1.0f ) );
@@ -200,23 +200,23 @@ Geometry * StaticNodeGroup::createGeometry( Texture2D * texture, double x1, doub
 
 	geom->setTexCoordArray( 0, texcoords );	
 
-	//设置法线方向
+	/* 设置法线方向 */
 	normal->push_back( Vec3( 0.0f, 0.0f, 1.0f ) );
 
 	geom->setNormalArray( normal );
 
 	geom->setNormalBinding( osg::Geometry::BIND_OVERALL );
 
-	//设置颜色
+	/* 设置颜色 */
 	osg::Vec4Array * color = new osg::Vec4Array;
 	color->push_back( Vec4( 1.0f, 1.0f, 1.0f, 1.0f ) );
 	geom->setColorArray( color );
 	geom->setColorBinding( osg::Geometry::BIND_OVERALL );
 
-	//绘制
+	/* 绘制 */
 	geom->addPrimitiveSet( new osg::DrawArrays( osg::PrimitiveSet::TRIANGLE_STRIP, 0, 4 ) );
 
-	// 设置纹理状态
+	/* 设置纹理状态 */
 	osg::StateSet * stateset = geom->getOrCreateStateSet();
 	stateset->setTextureAttributeAndModes( 0, texture, osg::StateAttribute::ON );
 	stateset->setMode( GL_BLEND, osg::StateAttribute::ON );

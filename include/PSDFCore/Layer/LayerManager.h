@@ -13,9 +13,8 @@ class OsgViewerBase;
 //-----------------------------------
 enum LayerStyle
 {
-	STATIC_LAYER,		// does not change at all, or changes ONLY as camera changes
-
-	DYNAMIC_LAYER		// may change any time
+	STATIC_LAYER,		/* does not change at all, or changes ONLY as camera changes */
+	DYNAMIC_LAYER		/* may change any time */
 };
 
 const unsigned int TOPMOST_Z_INDEX = 100;
@@ -42,9 +41,9 @@ private:
 	bool						containsPagedLOD(Node* node);
 
 private:
-	OsgViewerBase *				_parentViewer;		//图层管理者所属父视窗口
-	ref_ptr< Group >			_staticRoot;		//静态图层根节点
-	ref_ptr< Group >			_dynamicRoot;		//动态图层根节点
+	OsgViewerBase *				_parentViewer;		/* 图层管理者所属父视窗口 */
+	ref_ptr< Group >			_staticRoot;		/* 静态图层根节点 */
+	ref_ptr< Group >			_dynamicRoot;		/* 动态图层根节点 */
 	int							_currLayerNum;
 
 	int							_currZIndex;

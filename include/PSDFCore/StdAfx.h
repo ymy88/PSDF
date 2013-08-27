@@ -1,9 +1,8 @@
-//#pragma once
-
 #ifdef _WIN32
-# pragma warning(disable: 4100)		/* unreferenced formal parameter  */
-# pragma warning(disable: 4127)		/* Conditional expression is constant */
-# pragma warning(disable: 4251)		/* class 'A' needs to have dll interface for to be used by clients of class 'B'. */
+# pragma warning(disable: 4100)		/*  unreferenced formal parameter   */
+# pragma warning(disable: 4127)		/*  Conditional expression is constant  */
+# pragma warning(disable: 4251)		/*  class 'A' needs to have dll interface for to be used by clients of class 'B'.  */
+# pragma warning(disable: 4819)		
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <process.h>
@@ -14,7 +13,7 @@
 #include <arpa/inet.h>
 #endif
 
-//标准头文件
+/* 标准头文件 */
 #include <map>
 #include <iostream>
 #include <vector>
@@ -29,9 +28,9 @@
 #include <ctime>
 
 
-//boost开发库文件
-#define BOOST_DATE_TIME_NO_LIB	// prevent Boost.asio from linking to Boost.Date_Time lib
-#define BOOST_REGEX_NO_LIB		// prevent Boost.asio from linking to Boost.Regex lib
+/* boost开发库文件 */
+#define BOOST_DATE_TIME_NO_LIB	/*  prevent Boost.asio from linking to Boost.Date_Time lib */
+#define BOOST_REGEX_NO_LIB		/*  prevent Boost.asio from linking to Boost.Regex lib */
 #include <boost/foreach.hpp>
 #include <boost/function.hpp>
 #include <boost/filesystem.hpp>
@@ -43,7 +42,7 @@
 #include <boost/bind.hpp>
 #include <boost/program_options/detail/utf8_codecvt_facet.hpp>
 
-//OSG开发库头文件
+/* OSG开发库头文件 */
 #include <osg/Group>
 #include <osg/Camera>
 #include <osg/Image>
@@ -57,12 +56,12 @@
 #include <osg/LightModel>
 #include <osg/LightSource>
 
-//标准库
+
 #ifdef _WIN32
 #pragma comment(lib, "pthreadVC2.lib")
 #endif
 
-//OSG开发库
+/* OSG开发库 */
 #ifdef _WIN32
 #	ifdef _DEBUG
 #		pragma comment(lib, "osgd.lib")

@@ -10,14 +10,14 @@ const int	TEXTURE_HEIGHT	= 1024;
 
 class PSDF_CORE_DLL_DECL StaticNodeGroup : public Group, public EventHandler
 {
-	/*
+	/* 
 	 * PagedLODCamera
 	 * 用来维持PagedLOD结点的渲染状态，
 	 * 防止当静态图层包含PagedLOD结点时
 	 * 由于纹理相机关闭后结点渲染状态
 	 * 丢失，导致场景重新从最模糊的状
 	 * 态慢慢更新到合适状态。
-	 */
+	  */
 	class PagedLODCamera : public Camera
 	{
 	public:

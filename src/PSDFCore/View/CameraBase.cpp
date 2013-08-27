@@ -18,10 +18,10 @@ CameraBase::CameraBase( OsgViewerBase * parentViewer, bool needRoam )
 
 	if (needRoam)
 	{
-		//消息处理优先级，设低一级好让相机在跟随物体时物体先动
+		/* 消息处理优先级，设低一级好让相机在跟随物体时物体先动 */
 		setPriority(PRIORITY_2);
 
-		//向消息中心注册消息
+		/* 向消息中心注册消息 */
 		EventCenter::inst()->registerHandler( this, MOUSE_CLICK_GROUP | MOUSE_MOTION_GROUP | MOUSE_SCROLL_GROUP | KEYBOARD_GROUP | SCENE_GROUP, _parentViewer->getStationId() );
 	}
 
@@ -32,13 +32,13 @@ CameraBase::CameraBase( OsgViewerBase * parentViewer, bool needRoam )
 
 	setViewport(0, 0, 800, 600);
 
-	//设置矩阵更新标志
+	/* 设置矩阵更新标志 */
 	_matrixChanged = true;	
 
-	//设置相机模式
+	/* 设置相机模式 */
 	_mode = CAMERA_MODE_NORMAL;
 
-	//设置动画
+	/* 设置动画 */
 	_flyRate = 0.05;
 	_initFlyBackAngle = DegreesToRadians(0.05);
 	_currFlyBackAngle = _initFlyBackAngle;
@@ -318,7 +318,7 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& world )
 	Vec3d worldNear, worldFar;
 	screenToWorld(scrX, scrY, worldNear, worldFar);
 
-	// 在观察点坐标系下，worldNear与worldFar的坐标
+	/*  在观察点坐标系下，worldNear与worldFar的坐标 */
 	Vec3d atNear = _cameraController.switchCoordinateSystem_point(worldNear, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 	Vec3d atFar = _cameraController.switchCoordinateSystem_point(worldFar, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 
@@ -329,7 +329,7 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& world )
 	}
 	else
 	{
-		// atNear在观察点平面前面，其z坐标为正值，atFar在观察点平面后面，其z坐标为负值
+		/*  atNear在观察点平面前面，其z坐标为正值，atFar在观察点平面后面，其z坐标为负值 */
 		atVec.x() = (-atFar.z() * atNear.x() + atNear.z() * atFar.x()) / (-atFar.z() + atNear.z());
 	}
 
@@ -339,7 +339,7 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& world )
 	}
 	else
 	{
-		// worldNear在观察点平面前面，其z坐标为正值，worldFar在观察点平面后面，其z坐标为负值
+		/*  worldNear在观察点平面前面，其z坐标为正值，worldFar在观察点平面后面，其z坐标为负值 */
 		atVec.y() = (-atFar.z() * atNear.y() + atNear.z() * atFar.y()) / (-atFar.z() + atNear.z());
 	}
 
@@ -355,8 +355,8 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& worldNear, Vec3d& wor
 	Vec3d windowNear( scrX, viewHeight - scrY, 0.0 );
 	Vec3d windowFar( scrX, viewHeight - scrY, 1.0 );
 
-	worldNear = windowNear * _screenToWorldMat;  // 近裁剪面上的坐标
-	worldFar = windowFar * _screenToWorldMat;  // 远裁剪面上的坐标
+	worldNear = windowNear * _screenToWorldMat;  /* 近裁剪面上的坐标 */
+	worldFar = windowFar * _screenToWorldMat;  /* 远裁剪面上的坐标 */
 }
 
 void CameraBase::onMouseMove( short currMouseX, short currMouseY )

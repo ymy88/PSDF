@@ -2,21 +2,19 @@
 
 #include <PSDFCore/Label/Label.h>
 
-Label::Label(const string& content, 
+Label::Label(const osgText::String& content, 
 			 unsigned short size, 
 			 float x, float y, float z, 
 			 float r, float g, float b, 
 			 osgText::Text::AlignmentType align)
 {
-	wstring contentW = stringToWString(content);
-
 	setNormal(Vec3(0, 0, 1));
 	setAutoScaleToScreen(true);
 	setAutoRotateMode(AutoTransform::ROTATE_TO_SCREEN);
 	setPosition(Vec3d(x, y, z));
 
 	_text = new osgText::Text;
-	_text->setText(contentW.c_str());
+	_text->setText(content);
 	_text->setCharacterSize(size);
 	_text->setPosition(Vec3(0, 0, 0));
 	_text->setColor(Vec4(r, g, b, 1.0));
@@ -82,7 +80,7 @@ void Label::setImageMark( const string& imageFile )
 	{
 		_text->setPosition(Vec3(size, 0, 0));
 	}
-	else // _contentTransform->getNumChildren() == 2
+	else /* _contentTransform->getNumChildren() == 2 */
 	{
 		_contentTransform->removeChild(1);
 	}
@@ -107,7 +105,7 @@ void Label::setNodeMark( Node* node )
 	{
 		_text->setPosition(Vec3(size, 0, 0));
 	}
-	else // _contentTransform->getNumChildren() == 2
+	else /* _contentTransform->getNumChildren() == 2 */
 	{
 		_contentTransform->removeChild(1);
 	}
@@ -119,10 +117,9 @@ void Label::setLocation( double x, double y, double z )
 	this->setPosition(Vec3d(x, y, z));
 }
 
-void Label::setContent( const string& content )
+void Label::setContent( const osgText::String& content )
 {
-	wstring contentW = stringToWString(content);
-	_text->setText(contentW.c_str());
+	_text->setText(content);
 
 }
 
@@ -130,6 +127,7 @@ void Label::setContent( const wstring& content )
 {
 	_text->setText(content.c_str());
 }
+
 void Label::setColor( float r, float g, float b )
 {
 	_text->setColor(Vec4(r, g, b, 1));
@@ -196,7 +194,6 @@ void Label::onDrag( int mouseScrX, int mouseScrY )
 
 void Label::correctLeftBottomAndRightTop( Vec3d& leftBottom, Vec3d& rightTop )
 {
-	//double width = abs(leftBottom.x() - rightTop.x());
 	double height = abs(leftBottom.y() - rightTop.y());
 
 	Text::AlignmentType align = _text->getAlignment();

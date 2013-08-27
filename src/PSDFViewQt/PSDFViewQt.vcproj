@@ -28,9 +28,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description="&#27491;&#22312;&#22797;&#21046; PSDFCore.dll &#21040; MyGIS\bin"
-				CommandLine="xcopy /Y $(SolutionDir)\bin\PSDFViewQt.dll $(SolutionDir)\..\MyGIS\bin&#x0D;&#x0A;"
-				Outputs="$(SolutionDir)\..\MyGIS\bin\PSDFViewQt.dll"
+				Description=""
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -105,9 +105,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description="&#27491;&#22312;&#22797;&#21046; PSDFViewQtd.dll &#21040;  MyGIS\bin"
-				CommandLine="xcopy /Y $(SolutionDir)\bin\PSDFViewQtd.dll $(SolutionDir)\..\MyGIS\bin&#x0D;&#x0A;"
-				Outputs=" $(SolutionDir)\..\MyGIS\bin\PSDFViewQtd.dll"
+				Description=""
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -181,7 +181,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\OsgViewerQGLWidgetAdapter.cpp"
+				RelativePath=".\QGLWidgetAdapter.cpp"
 				>
 			</File>
 			<File
@@ -223,15 +223,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\include\PSDFViewQt\impl\OsgViewerQGLWidgetAdapter.h"
+				RelativePath="..\..\include\PSDFViewQt\PSDFViewQt.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\include\PSDFViewQt\impl\QGLWidgetAdapter.h"
 				>
 				<FileConfiguration
 					Name="Release|Win32"
 					>
 					<Tool
 						Name="VCCustomBuildTool"
-						Description="Moc&apos;ing OsgViewerQGLWidgetAdapter.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../../../include/PSDFViewQt/impl/OsgViewerQGLWidgetAdapter.h&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DPSDF_VIEWQT_EXPORTS -D_WINDLL -D_UNICODE &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
+						Description="Moc&apos;ing QGLWidgetAdapter.h..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../../../include/PSDFViewQt/impl/QGLWidgetAdapter.h&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DPSDF_VIEWQT_EXPORTS -D_WINDLL -D_UNICODE &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -241,16 +245,12 @@
 					>
 					<Tool
 						Name="VCCustomBuildTool"
-						Description="Moc&apos;ing OsgViewerQGLWidgetAdapter.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../../../include/PSDFViewQt/impl/OsgViewerQGLWidgetAdapter.h&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DPSDF_VIEWQT_EXPORTS -D_WINDLL -D_UNICODE &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
+						Description="Moc&apos;ing QGLWidgetAdapter.h..."
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;  &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../../../include/PSDFViewQt/impl/QGLWidgetAdapter.h&quot;  -DUNICODE -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -DPSDF_VIEWQT_EXPORTS -D_WINDLL -D_UNICODE &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
 				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\include\PSDFViewQt\PSDFViewQt.h"
-				>
 			</File>
 			<File
 				RelativePath=".\StdAfx.h"
@@ -290,7 +290,7 @@
 				SourceControlFiles="false"
 				>
 				<File
-					RelativePath=".\GeneratedFiles\Release\moc_OsgViewerQGLWidgetAdapter.cpp"
+					RelativePath=".\GeneratedFiles\Release\moc_QGLWidgetAdapter.cpp"
 					>
 					<FileConfiguration
 						Name="Debug|Win32"
@@ -308,7 +308,7 @@
 				SourceControlFiles="false"
 				>
 				<File
-					RelativePath=".\GeneratedFiles\Debug\moc_OsgViewerQGLWidgetAdapter.cpp"
+					RelativePath=".\GeneratedFiles\Debug\moc_QGLWidgetAdapter.cpp"
 					>
 					<FileConfiguration
 						Name="Release|Win32"

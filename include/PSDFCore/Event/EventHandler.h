@@ -8,11 +8,11 @@
 
 enum HandlerPriority
 {
-	PRIORITY_1, //最低优先级
+	PRIORITY_1, /* 最低优先级 */
 	PRIORITY_2,
 	PRIORITY_3,
 	PRIORITY_4,
-	PRIORITY_5	// 最高优先级
+	PRIORITY_5	/* 最高优先级 */
 };
 
 class PSDF_CORE_DLL_DECL EventHandler
@@ -30,7 +30,7 @@ public:
 
 	void				handle( unsigned eventType, int param1, int param2, int currStationId)
 	{
-		// 此处使用mutex保证handle函数只会同时被一个线程调用
+		/* 此处使用mutex保证handle函数只会同时被一个线程调用 */
 
 		_handlerMutex.lock();
 		_currStationId = currStationId;

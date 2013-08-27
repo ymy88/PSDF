@@ -167,7 +167,7 @@ void CameraController::testTranslateCamera(const Vec3d& vec, CoordType coordType
 
 	if (vec.length2() < 1e-10) { return; }
 
-	// 把位移向量转换到世界坐标系下
+	/* 把位移向量转换到世界坐标系下 */
 
 	Vec3d tmpVec;
 	switch (coordType)
@@ -193,7 +193,7 @@ void CameraController::testTranslateCamera(const Vec3d& vec, CoordType coordType
 		break;
 	}
 
-	// 移动指定点
+	/* 移动指定点 */
 	Matrixd mat;
 	mat.makeTranslate(tmpVec);
 
@@ -269,7 +269,7 @@ void CameraController::testRotateCamera( const Vec3d& axis, double angle, CoordT
 
 	if (abs(angle) < 1e-10) { return; }
 
-	// 把旋转轴转换到世界坐标下
+	/* 把旋转轴转换到世界坐标下 */
 
 	Vec3d ptWorld1, ptWorld2;
 	ptWorld1 = Vec3d(0, 0, 0);
@@ -301,7 +301,7 @@ void CameraController::testRotateCamera( const Vec3d& axis, double angle, CoordT
 		break;
 	}
 
-	// 旋转指定点
+	/* 旋转指定点 */
 	Matrixd mat1, mat2, mat3, matFinal;
 	mat1.makeTranslate(-ptWorld1);
 	mat2.makeRotate(angle, ptWorld2-ptWorld1);
@@ -577,7 +577,7 @@ void CameraController::updateBaseToWorldMatrix()
 {
 	Vec3d zAt = _testAt - _testBase;
 
-	// At point与Base point重合
+	/* At point与Base point重合 */
 	if (zAt.length2() < 1e-10)
 	{
 		_testBaseEyeToWorldMatrix = _testAtToWorldMatrix;
@@ -587,7 +587,7 @@ void CameraController::updateBaseToWorldMatrix()
 
 	Vec3d zEye = _testEye - _testBase;
 
-	// Eye point与Base point重合
+	/* Eye point与Base point重合 */
 	if (zEye.length2() < 1e-10)
 	{
 		_testBaseEyeToWorldMatrix = _testBaseEyeToWorldMatrix;
@@ -611,13 +611,13 @@ void CameraController::updateBaseToWorldMatrix()
 	Vec3d yAt;
 	if (inSameLine(_testEye, _testAt, _testBase)) // eye, at, base 三点共线
 	{
-		// y轴以up向量为参照
+		/* y轴以up向量为参照 */
 		yEye = _testUp;
 		yAt = _testUp;
 	}
 	else
 	{
-		// y轴以视线为参照
+		/* y轴以视线为参照 */
 		Vec3d sight = _testAt - _testEye;
 		yEye = zEye ^ sight ^ zEye;
 		yAt = zAt ^ sight ^ zAt;

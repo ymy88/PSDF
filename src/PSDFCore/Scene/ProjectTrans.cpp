@@ -13,7 +13,7 @@ ProjectTrans::~ProjectTrans()
 {
 }
 
-void ProjectTrans::setCenter( double longitude, double latitude, double altitude /*= 0 */ )
+void ProjectTrans::setCenter( double longitude, double latitude, double altitude /* = 0  */ )
 {
     _centerLong = longitude;
     _centerLat = latitude;

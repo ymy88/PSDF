@@ -9,7 +9,7 @@
 class PSDF_CORE_DLL_DECL Label : public AutoTransform, public Pickable
 {
 public:
-	Label(const string& content,
+	Label(const osgText::String& content,
 		  unsigned short size,
 		  float x, float y, float z,
 		  float r = 0, float g = 0, float b = 0,
@@ -19,7 +19,7 @@ public:
 	virtual ~Label() {}
 
 	void					setLocation(double x, double y, double z);
-	void					setContent(const string& content);
+	void					setContent(const osgText::String& content);
 	void					setContent(const wstring& content);
 	void					setColor(float r, float g, float b);
 	void					setBackgroundColor(float r, float g, float b, float a);

@@ -4,22 +4,22 @@
 #include "../View/OsgViewerBase.h"
 
 
-// 定义插件导出函数签名
+/*  定义插件导出函数签名 */
 #ifndef EXPORT_PLUGIN_FUNCTION
 #define EXPORT_PLUGIN_FUNCTION \
 	extern "C" \
 	BOOST_EXTENSION_EXPORT_DECL Plugin * createPlugin()
 #endif
 
-//插件属性
+/* 插件属性 */
 enum PluginType
 {
-	PLUGIN_MODULE,					//普通模块插件
-	PLUGIN_LAYER,					//视窗图层插件
+	PLUGIN_MODULE,					/* 普通模块插件 */
+	PLUGIN_LAYER,					/* 视窗图层插件 */
 };
 
 
-//一般类插件基类
+/* 一般类插件基类 */
 class PSDF_CORE_DLL_DECL Plugin
 {
 public:
@@ -40,7 +40,7 @@ private:
 };
 
 
-//图层类插件基类
+/* 图层类插件基类 */
 class PSDF_CORE_DLL_DECL LayerPlugin : public Plugin
 {
 public:
@@ -61,5 +61,5 @@ private:
 	DisplayMode				_displayMode;
 	string					_viewType;
 
-	vector<OsgViewerBase*>	_parentViewers;									//LayerPlugin从属视窗指针
+	vector<OsgViewerBase*>	_parentViewers;									/* LayerPlugin从属视窗指针 */
 };

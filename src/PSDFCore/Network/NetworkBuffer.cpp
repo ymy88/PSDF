@@ -38,8 +38,8 @@ size_t NetworkBuffer::getLength()
 
 void NetworkBuffer::run()
 {
-	size_t receivedLen = 0; // 网络收到的数据长度
-	size_t dataLen = 0; // 一个完整的数据包的长度
+	size_t receivedLen = 0; /* 网络收到的数据长度 */
+	size_t dataLen = 0; /* 一个完整的数据包的长度 */
 
 	while (true)
 	{

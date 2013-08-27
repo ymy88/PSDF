@@ -28,7 +28,7 @@ public:
 	void			drag(int mouseScrX, int mouseScrY)		{ onDrag(mouseScrX, mouseScrY); _lastScrX = mouseScrX; _lastScrY = mouseScrY; }
 
 
-	// actions
+	/* actions */
 	virtual void	onPick(int mouseScrX, int mouseScrY)	{}
 	virtual void	onCancelPick()							{}
 	virtual void	onPreDrag()								{}

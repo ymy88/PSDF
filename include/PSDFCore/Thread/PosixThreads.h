@@ -88,8 +88,8 @@ private:
 //-----------------------------------
 // PosixSemaphore
 //-----------------------------------
-// pthread for Win32并没有实现sem_open()函数及相关的宏
-// 定义这些宏使得程序在windows下能编译通过
+/* pthread for Win32并没有实现sem_open()函数及相关的宏 */
+/* 定义这些宏使得程序在windows下能编译通过 */
 #ifndef SEM_FAILED
 #define SEM_FAILED (sem_t*)-1
 #endif
@@ -110,7 +110,7 @@ public:
 	{
 		if (-1 == sem_init( &_sem, 0, initCount ))
 		{
-			// 某些系统不支持匿名信号量（比如Mac OS），则使用命名信号量
+			/* 某些系统不支持匿名信号量（比如Mac OS），则使用命名信号量 */
 			srand(clock());
 			do
 			{

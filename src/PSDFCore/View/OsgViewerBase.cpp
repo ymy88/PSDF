@@ -21,14 +21,14 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 	_displayMode = displayMode;
 	_viewType = viewType;
 
-	//将本视窗添加到全局视窗容器中
+	/* 将本视窗添加到全局视窗容器中 */
 	_allViewers.push_back( this );
 	
 	_focusedViewer = this;
 
 	_eventStation = new EventStation();
 
-	//将视窗的消息站添加到消息中心的消息站容器中
+	/* 将视窗的消息站添加到消息中心的消息站容器中 */
 	EventCenter::inst()->registerStation( _eventStation );
 
 	_layerManager = new LayerManager( this );
@@ -36,7 +36,7 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 	_pickableManager = new PickableManager( this );
 
 
-	// scene
+	/* scene */
 	Group* dynamicRoot = new Group;
 	Group* staticRoot = new Group;
 	dynamicRoot->setName("Dynamic root");
@@ -47,7 +47,7 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 
 	if (displayMode == MODE_2D)
 	{
-		//创建静态场景根节点
+		/* 创建静态场景根节点 */
 		ref_ptr< StaticNodeGroup > staticNodeGroup = new StaticNodeGroup( this );
 		staticNodeGroup->addChild( staticRoot );	
 		_sceneData->addChild( staticNodeGroup.get() );
@@ -60,7 +60,7 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 
 	_layerManager->setRoot( staticRoot, dynamicRoot );
 
-	// screen
+	/* screen */
 
 	Group* screenRoot = new Group;
 	screenRoot->setName("Screen root");
@@ -72,7 +72,7 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 	_statsHandler = new StatsHandler(this);
 
 
-	// light
+	/* light */
 
 	StateSet* sceneDataState = _sceneData->getOrCreateStateSet();
 
@@ -209,7 +209,7 @@ void OsgViewerBase::setMainCamera(CameraBase* camera)
 	_mainCamera->setGraphicsContext( getGraphicsWindow() );
 	this->setCamera(_mainCamera);
 
-	// scene data必须在设置完相机后设置
+	/* scene data必须在设置完相机后设置 */
 	this->setSceneData(_sceneData);
 }
 

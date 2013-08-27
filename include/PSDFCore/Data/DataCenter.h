@@ -54,12 +54,12 @@ public:
 			}
 		}
 
-		// pointer operations
+		/* pointer operations */
 		T& operator*() const { return *_ptr; }
 		T* operator->() const { return _ptr; }
 		T* get() const { return _ptr; }
 
-		// bool operations
+		/* bool operations */
 		operator T*() { return _ptr; }
 		bool operator==(const DataPtr& dataPtr) const { return this->_ptr == dataPtr._ptr; }
 		bool operator==(const T* ptr) const { return this->_ptr == ptr; }
@@ -94,7 +94,7 @@ private:
 public:
 	static DataCenter*	inst();
 
-	int		addData(char* data, int length); // return dataIndex
+	int		addData(char* data, int length); /* return dataIndex */
 
 	template<typename T>
 	bool	getData(DataPtr<T>& dataPtr, unsigned int dataIndex)
@@ -138,7 +138,7 @@ private:
 
 	unsigned int			_round;
 	
-	// log
+	/* log */
 	int						_lookedCount;
 	int						_hitCount;
 };

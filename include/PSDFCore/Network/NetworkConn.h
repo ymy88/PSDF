@@ -3,8 +3,8 @@
 #include "NetworkDataRecognizer.h"
 #include "NetworkBuffer.h"
 
-#define BOOST_DATE_TIME_NO_LIB	// prevent Boost.asio from linking to Boost.Date_Time lib
-#define BOOST_REGEX_NO_LIB		// prevent Boost.asio from linking to Boost.Regex lib
+#define BOOST_DATE_TIME_NO_LIB	/* prevent Boost.asio from linking to Boost.Date_Time lib */
+#define BOOST_REGEX_NO_LIB		/* prevent Boost.asio from linking to Boost.Regex lib */
 
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>

@@ -23,7 +23,7 @@ protected:
 	struct Target
 	{
 		Node* node;
-		Vec3d location; // x, y, z
+		Vec3d location; /*  x, y, z  */
 		double eyeDist;
 		double angleEarth;
 		double angleNorth;
@@ -90,35 +90,35 @@ protected:
 	virtual void		XYZToLL(double x, double y, double z, double& lon, double& lat) { lon = lat = 0; };
 
 protected:
-	OsgViewerBase *		_parentViewer;			//2D相机所属父视窗口
+	OsgViewerBase *		_parentViewer;			/* 2D相机所属父视窗口 */
 
-	bool				_needRoam;				//漫游总开关
+	bool				_needRoam;				/* 漫游总开关 */
 
-	bool				_lbuttonDown;			//鼠标按键
+	bool				_lbuttonDown;			/* 鼠标按键 */
 	bool				_mbuttonDown;
 	bool				_rbuttonDown;
-	int					_modifier;				//键盘功能键
+	int					_modifier;				/* 键盘功能键 */
 
-	bool				_mouseMoved;			//标记鼠标按键从按下到弹起，鼠标是否移动过
+	bool				_mouseMoved;			/* 标记鼠标按键从按下到弹起，鼠标是否移动过 */
 
-	short				_lastMouseX;			//上一次的鼠标位置，屏幕坐标系
+	short				_lastMouseX;			/* 上一次的鼠标位置，屏幕坐标系 */
 	short				_lastMouseY;
 
-	Matrixd				_screenToWorldMat;		//屏幕坐标到世界坐标变换矩阵
-	Matrixd				_worldToScreenMat;		//世界坐标到屏幕坐标变换矩阵
-	bool				_matrixChanged;			//变换矩阵更新标志
+	Matrixd				_screenToWorldMat;		/* 屏幕坐标到世界坐标变换矩阵 */
+	Matrixd				_worldToScreenMat;		/* 世界坐标到屏幕坐标变换矩阵 */
+	bool				_matrixChanged;			/* 变换矩阵更新标志 */
 
-	CameraMode			_mode;					//相机模式
+	CameraMode			_mode;					/* 相机模式 */
 
-	Target				_target;				//相机跟随这个节点运动或飞到该点
+	Target				_target;				/* 相机跟随这个节点运动或飞到该点 */
 	AnimationPhase		_phase;
-	double				_flyRate;				//控制相机飞行时的速度
-	double				_initFlyBackAngle;		//控制相机复位的速度
+	double				_flyRate;				/* 控制相机飞行时的速度 */
+	double				_initFlyBackAngle;		/* 控制相机复位的速度 */
 	double				_currFlyBackAngle;
 	double				_flyBackRate;
 
-	double				_cameraMinDistance;		//相机距离原点(3D)或XY平面(2D)的最短距离
-	double				_cameraMaxDistance;		//相机距离原点(3D)或XY平面(2D)的最长距离
+	double				_cameraMinDistance;		/* 相机距离原点(3D)或XY平面(2D)的最短距离 */
+	double				_cameraMaxDistance;		/* 相机距离原点(3D)或XY平面(2D)的最长距离 */
 	double				_streetViewAngle;
 
 	CameraController	_cameraController;

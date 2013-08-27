@@ -1,9 +1,7 @@
-//#pragma once
-
-//插件软件开发框架 内核库PSDFCore头文件
+/* 插件软件开发框架 内核库PSDFCore头文件 */
 #include <PSDFCore/PSDFCore.h>
 
-//插件软件开发框架	视窗库PSDFView头文件
+/* 插件软件开发框架,视窗库PSDFView头文件 */
 #include "impl/Common.h"
 #include "impl/QGLWidgetAdapter.h"
 #include "impl/ViewerQt2D.h"

@@ -50,7 +50,7 @@ void Camera3D::moveCamera(short currMouseX, short currMouseY)
 
 void Camera3D::rotateCameraXY( short currMouseX, short currMouseY )
 {
-	//计算鼠标按下时世界坐标与当前点世界坐标的偏移量
+	/* 计算鼠标按下时世界坐标与当前点世界坐标的偏移量 */
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
 	screenToWorld(currMouseX, currMouseY, currMouseWorld);
@@ -69,7 +69,7 @@ void Camera3D::rotateCameraXY( short currMouseX, short currMouseY )
 
 	Vec3d axis = v1 ^ v2;
 	double mul = v1 * v2;
-	mul = mul > 1 ? 1 : mul;  // 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常
+	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
 	double angle = acos(mul);
 
 	_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_POINT_AT_POINT, EYE_POINT_AND_AT_POINT);
@@ -91,7 +91,7 @@ void Camera3D::rotateCameraZ( short currMouseX, short currMouseY )
 	v2.normalize();
 
 	double mul = v1 * v2;
-	mul = mul > 1 ? 1 : mul;  // 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常
+	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
 	double angle = acos(mul);
 	Vec3d axis = v1 ^ v2;
 
@@ -107,7 +107,7 @@ void Camera3D::rotateCameraZ( short currMouseX, short currMouseY )
 
 void Camera3D::rotateCameraStreetView( short currMouseX, short currMouseY )
 {
-	// 上升下降
+	/* 上升下降 */
 
 	const double maxAngle = DegreesToRadians(89.0);
 
@@ -125,7 +125,7 @@ void Camera3D::rotateCameraStreetView( short currMouseX, short currMouseY )
 	_cameraController.rotateCamera(AXIS_X, angle, COORD_TYPE_AT_POINT, EYE_POINT_AND_AT_POINT);
 
 
-	// 绕观察点旋转
+	/* 绕观察点旋转 */
 
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
@@ -141,7 +141,7 @@ void Camera3D::rotateCameraStreetView( short currMouseX, short currMouseY )
 	v2.normalize();
 
 	double mul = v1 * v2;
-	mul = mul > 1 ? 1 : mul;  // 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常
+	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
 	angle = acos(mul);
 	Vec3d axis = v1 ^ v2;
 	if (abs(axis.z()) < 1e-8)
@@ -198,14 +198,14 @@ void Camera3D::onFly()
 {
 	if (_phase == PHASE0)
 	{
-		onPhase0(); // fly back
+		onPhase0(); /* fly back */
 		_mode = CAMERA_MODE_FLYING_TO_LOCATION;
 		return;
 	}
 
 	bool done = true;
 
-	// 旋转相机到指定点
+	/* 旋转相机到指定点 */
 	Vec3d v1 = _cameraController.getCurrAt();
 	Vec3d v2 = _target.location;
 	v1.normalize();
@@ -228,9 +228,9 @@ void Camera3D::onFly()
 
 
 
-	if (_target.eyeDist > 0)  // 需要调整相机姿态
+	if (_target.eyeDist > 0)  /* 需要调整相机姿态 */
 	{
-		// 调整视点距离
+		/* 调整视点距离 */
 		Vec3d currEye = _cameraController.getCurrEye();
 		Vec3d currAt = _cameraController.getCurrAt();
 		double dist = (currEye - currAt).length(); 
@@ -251,13 +251,13 @@ void Camera3D::onFly()
 
 
 
-		// 调整视线角度
+		/* 调整视线角度 */
 
 		currEye = _cameraController.getCurrEye();
 		currAt = _cameraController.getCurrAt();
 
-		// 调整与正北的角度
-		if (abs(currAt.x()) > 0.01 && abs(currAt.y()) > 0.01) // 观察点不位于极点附近
+		/* 调整与正北的角度 */
+		if (abs(currAt.x()) > 0.01 && abs(currAt.y()) > 0.01) /* 观察点不位于极点附近 */
 		{
 			Vec3d north(0, 1, 0);
 			north = _cameraController.switchCoordinateSystem_vector(north, COORD_TYPE_WORLD, COORD_TYPE_BASE_POINT_AT_POINT);
@@ -274,7 +274,7 @@ void Camera3D::onFly()
 			currDir.normalize();	
 
 			cosAngle = currDir * goalDir;
-			if (cosAngle < 1 - (1e-10)) // 当前方向未指向指定方向
+			if (cosAngle < 1 - (1e-10)) /* 当前方向未指向指定方向 */
 			{
 				double angle = acos(cosAngle);
 				Vec3d axis = currDir ^ goalDir;
@@ -292,7 +292,7 @@ void Camera3D::onFly()
 			}
 		}
 
-		 //调整与地平面的角度
+		 /* 调整与地平面的角度 */
 		double angle = _target.angleEarth - _streetViewAngle;
 		double step4 = angle;
 		if (step4 > _angleThreshold)
@@ -304,9 +304,9 @@ void Camera3D::onFly()
 		_streetViewAngle += step4;
 		_cameraController.rotateCamera(AXIS_X, step4, COORD_TYPE_AT_POINT, EYE_POINT_AND_AT_POINT);
 
-	} // if 需要调整相机姿态
+	} /* if 需要调整相机姿态 */
 
-	// 是否需要手动计算远近裁减面
+	/* 是否需要手动计算远近裁减面 */
 	checkShouldDisableAutoComputeNearFar();
 
 	if (done)
@@ -319,7 +319,7 @@ void Camera3D::onFollow()
 {
 	if (_phase == PHASE0)
 	{
-		onPhase0(); // fly back;
+		onPhase0(); /* fly back; */
 		_mode = CAMERA_MODE_FOLLOWING_NODE;
 		return;
 	}
@@ -331,10 +331,10 @@ void Camera3D::onFollow()
 	double len = (currBase - nodeCenter).length2();
 	if (len < 0.1)
 	{
-		_phase = PHASE2; // 仅仅跟随，不再自动调整相机姿态，由用户自由控制
+		_phase = PHASE2; /* 仅仅跟随，不再自动调整相机姿态，由用户自由控制 */
 	}
 
-	// 改变高度
+	/* 改变高度 */
 	double altDiff = nodeCenter.length() - currBase.length();
 	double step1 = altDiff;
 	if (abs(step1) > _distThreshold)
@@ -356,7 +356,7 @@ void Camera3D::onFollow()
 		currBase = _cameraController.getCurrBase();
 	}
 
-	// 旋转
+	/* 旋转 */
 	Vec3d v1 = currBase;
 	Vec3d v2 = nodeCenter;
 	v1.normalize();
@@ -380,7 +380,7 @@ void Camera3D::onFollow()
 		return;
 	}
 
-	// 调整观察点
+	/* 调整观察点 */
 	double nodeRadius = bound.radius();
 	Vec3d currAt = _cameraController.getCurrAt();
 	Vec3d currAt2 = _cameraController.switchCoordinateSystem_point(currAt, COORD_TYPE_WORLD, COORD_TYPE_BASE_POINT_AT_POINT);
@@ -396,7 +396,7 @@ void Camera3D::onFollow()
 		_cameraController.translateCamera(Vec3d(0, 0, -step3), COORD_TYPE_BASE_POINT_AT_POINT, EYE_POINT_AND_AT_POINT);
 	}
 
-	// 调整视点
+	/* 调整视点 */
 	Vec3d currEye = _cameraController.getCurrEye();
 	Vec3d currEye2 = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
 	double distFromEyeToAt = currEye2.z();
@@ -411,13 +411,13 @@ void Camera3D::onFollow()
 		_cameraController.translateCamera(Vec3d(0, 0, -step4), COORD_TYPE_AT_POINT, EYE_POINT);
 	}
 
-	// 是否需要手动计算远近裁减面
+	/* 是否需要手动计算远近裁减面 */
 	checkShouldDisableAutoComputeNearFar();
 }
 
 void Camera3D::onFlyBack()
 {
-	// 重置Base Point
+	/* 重置Base Point */
 	Vec3d currBase = _cameraController.getCurrBase();
 	if (abs(currBase.x()) > 1e-10 || abs(currBase.y()) > 1e-10 || abs(currBase.z()) > 1e-10)
 	{
@@ -442,7 +442,7 @@ void Camera3D::onFlyBack()
 		}
 	}
 
-	// 旋转Eye point，使得视线垂直于地表
+	/* 旋转Eye point，使得视线垂直于地表 */
 	if (_streetViewAngle > 0)
 	{
 		double step = (_streetViewAngle < _currFlyBackAngle) ? _streetViewAngle : _currFlyBackAngle;
@@ -455,19 +455,19 @@ void Camera3D::onFlyBack()
 
 	if (_streetViewAngle == 0)
 	{
-		// 改变At Point
+		/* 改变At Point */
 		Vec3d currAt = _cameraController.getCurrAt();
 		double distFromAtToBase = (currAt - currBase).length();
 		double step = distFromAtToBase - _cameraMinDistance;
 		_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_BASE_POINT_AT_POINT, AT_POINT);
 
-		// 重置相关属性
+		/* 重置相关属性 */
 		_mode = CAMERA_MODE_NORMAL;
 		_streetViewAngle = 0;
 		_currFlyBackAngle = _initFlyBackAngle;
 	}
 
-	// 是否需要手动计算远近裁减面
+	/* 是否需要手动计算远近裁减面 */
 	checkShouldDisableAutoComputeNearFar();
 }
 

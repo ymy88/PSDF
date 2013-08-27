@@ -28,9 +28,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description="正在复制 PSDFCored.dll 到  MyGIS\bin"
-				CommandLine="xcopy /Y $(SolutionDir)\bin\PSDFCored.dll $(SolutionDir)\..\MyGIS\bin&#x0D;&#x0A;"
-				Outputs=" $(SolutionDir)\..\MyGIS\bin\PSDFCored.dll"
+				Description=""
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -107,9 +107,9 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				Description="正在复制 PSDFCore.dll 到 MyGIS\bin"
-				CommandLine="xcopy /Y $(SolutionDir)\bin\PSDFCore.dll $(SolutionDir)\..\MyGIS\bin&#x0D;&#x0A;"
-				Outputs="$(SolutionDir)\..\MyGIS\bin\PSDFCore.dll"
+				Description=""
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"

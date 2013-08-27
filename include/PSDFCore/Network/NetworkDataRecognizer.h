@@ -26,7 +26,7 @@ protected:
 	
 public:
 
-	// return eventType
+	/* return eventType */
 	virtual void recognize(_IN char* data, _OUT size_t& length, _OUT unsigned int& eventType) const = 0;
 
 private:
