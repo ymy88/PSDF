@@ -171,6 +171,7 @@ pip-log.txt
 .mr.developer.cfg
 
 # Mac crap
+._*
 .DS_Store
 ._*
 
