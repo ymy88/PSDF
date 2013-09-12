@@ -279,8 +279,8 @@ void CameraBase::getCameraStatus( double& lon, double& lat, double& eyeDistance,
 	angleEarth = _streetViewAngle;
 
 	Vec3d sight = currAt - currEye + currUp;
-	Vec3d v1 = _cameraController.switchCoordinateSystem_vector(Vec3d(0, 1, 0), COORD_TYPE_WORLD, COORD_TYPE_BASE_POINT_AT_POINT);
-	Vec3d v2 = _cameraController.switchCoordinateSystem_vector(sight, COORD_TYPE_WORLD, COORD_TYPE_BASE_POINT_AT_POINT);
+	Vec3d v1 = _cameraController.switchCoordinateSystem_vector(Vec3d(0, 1, 0), COORD_TYPE_WORLD, COORD_TYPE_BASE_AT);
+	Vec3d v2 = _cameraController.switchCoordinateSystem_vector(sight, COORD_TYPE_WORLD, COORD_TYPE_BASE_AT);
 	v1.z() = 0;
 	v2.z() = 0;
 	v1.normalize();
@@ -319,8 +319,8 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& world )
 	screenToWorld(scrX, scrY, worldNear, worldFar);
 
 	/*  在观察点坐标系下，worldNear与worldFar的坐标 */
-	Vec3d atNear = _cameraController.switchCoordinateSystem_point(worldNear, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
-	Vec3d atFar = _cameraController.switchCoordinateSystem_point(worldFar, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	Vec3d atNear = _cameraController.switchCoordinateSystem_point(worldNear, COORD_TYPE_WORLD, COORD_TYPE_AT);
+	Vec3d atFar = _cameraController.switchCoordinateSystem_point(worldFar, COORD_TYPE_WORLD, COORD_TYPE_AT);
 
 	Vec3d atVec;
 	if (abs(atNear.x() - atFar.x()) < 1e-8)
@@ -343,7 +343,7 @@ void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& world )
 		atVec.y() = (-atFar.z() * atNear.y() + atNear.z() * atFar.y()) / (-atFar.z() + atNear.z());
 	}
 
-	world = _cameraController.switchCoordinateSystem_point(atVec, COORD_TYPE_AT_POINT, COORD_TYPE_WORLD);
+	world = _cameraController.switchCoordinateSystem_point(atVec, COORD_TYPE_AT, COORD_TYPE_WORLD);
 }
 
 void CameraBase::screenToWorld( int scrX, int scrY, Vec3d& worldNear, Vec3d& worldFar )

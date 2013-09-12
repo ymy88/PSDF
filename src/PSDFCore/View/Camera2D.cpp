@@ -51,7 +51,7 @@ void Camera2D::setCameraPositionAndRange(double centerX, double centerY, double 
 	double diff = (_cameraController.getCurrEye() - _cameraController.getCurrAt()).length() - newDist;
 
 	_cameraController.translateCamera(Vec3d(centerX, centerY, 0), COORD_TYPE_WORLD, EYE_POINT_AND_AT_POINT);
-	_cameraController.translateCamera(Vec3d(0, 0, diff), COORD_TYPE_EYE_POINT, EYE_POINT);
+	_cameraController.translateCamera(Vec3d(0, 0, diff), COORD_TYPE_EYE, EYE_POINT);
 
 	EventCenter::inst()->triggerEvent(CAMERA_CHANGED, 0, createParam(1, 1), _parentViewer->getStationId() );
 }
@@ -82,7 +82,7 @@ void Camera2D::translateCamera( short currMouseX, short currMouseY )
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
 	screenToWorld(currMouseX, currMouseY, currMouseWorld);
 	Vec3d diff = lastMouseWorld - currMouseWorld;
-	Vec3d finalVec = _cameraController.switchCoordinateSystem_vector(diff, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	Vec3d finalVec = _cameraController.switchCoordinateSystem_vector(diff, COORD_TYPE_WORLD, COORD_TYPE_AT);
 	finalVec.z() = 0;
 
 	/* 移动视点位置 */
@@ -96,8 +96,8 @@ void Camera2D::rotateCamera( short currMouseX, short currMouseY )
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
 	screenToWorld(currMouseX, currMouseY, currMouseWorld);
-	currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
-	lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
+	lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
 	currMouseWorld.z() = 0;
 	lastMouseWorld.z() = 0;
 
@@ -109,7 +109,7 @@ void Camera2D::rotateCamera( short currMouseX, short currMouseY )
 	double angle = acos(v1 * v2);
 	Vec3d axis = v1 ^ v2;
 
-	_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_POINT_AT_POINT, EYE_POINT_AND_AT_POINT);
+	_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT);
 
 }
 
@@ -128,7 +128,7 @@ void Camera2D::rotateCameraStreetView(short currMouseX, short currMouseY)
 	}
 	_streetViewAngle += angle;
 
-	_cameraController.rotateCamera(AXIS_X, angle, COORD_TYPE_AT_POINT, EYE_POINT_AND_AT_POINT);
+	_cameraController.rotateCamera(AXIS_X, angle, COORD_TYPE_AT, EYE_POINT_AND_AT_POINT);
 }
 
 void Camera2D::zoomIn()
@@ -140,7 +140,7 @@ void Camera2D::zoomIn()
 	}
 	double step = (dist - _cameraMinDistance) * 0.8 + _cameraMinDistance;
 
-	_cameraController.translateCamera(Vec3d(0, 0, -(dist - step)), COORD_TYPE_EYE_POINT, EYE_POINT);
+	_cameraController.translateCamera(Vec3d(0, 0, -(dist - step)), COORD_TYPE_EYE, EYE_POINT);
 
 	const Vec3d& currEye = _cameraController.getCurrEye();
 	if (currEye.z() <  _cameraMinDistance)
@@ -155,7 +155,7 @@ void Camera2D::zoomOut()
 	double step = (dist - _cameraMinDistance) * 1.25 + _cameraMinDistance;
 
 	Vec3d testEye, testAt, testUp;
-	_cameraController.testTranslateCamera(Vec3d(0, 0, -(dist - step)), COORD_TYPE_EYE_POINT, EYE_POINT, testEye, testAt, testUp);
+	_cameraController.testTranslateCamera(Vec3d(0, 0, -(dist - step)), COORD_TYPE_EYE, EYE_POINT, testEye, testAt, testUp);
 	if (testEye.z() <= _cameraMaxDistance)
 	{
 		_cameraController.confirmTest();
@@ -220,7 +220,7 @@ void Camera2D::onFly()
 
 	/* 缩放到合适位置 */
 	Vec3d currEye = _cameraController.getCurrEye();
-	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT);
 
 	double offset = currEye.z() - DIST_FROM_EYE_TO_LOCATION;
 	if (abs(offset) > 1e-8)
@@ -235,7 +235,7 @@ void Camera2D::onFly()
 			step = offset * _flyRate;
 		}
 
-		_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_EYE_POINT, EYE_POINT);
+		_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_EYE, EYE_POINT);
 	}
 }
 
@@ -268,7 +268,7 @@ void Camera2D::onFollow()
 
 	/* 缩放到合适位置 */
 	Vec3d currEye = _cameraController.getCurrEye();
-	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	currEye = _cameraController.switchCoordinateSystem_point(currEye, COORD_TYPE_WORLD, COORD_TYPE_AT);
 
 	double offset = currEye.z() - DIST_FROM_EYE_TO_LOCATION;
 	if (abs(offset) > 1e-8)
@@ -283,7 +283,7 @@ void Camera2D::onFollow()
 			step = offset * _flyRate;
 		}
 
-		_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_EYE_POINT, EYE_POINT);
+		_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_EYE, EYE_POINT);
 	}
 }
 
@@ -296,7 +296,7 @@ void Camera2D::onFlyBack()
 
 	/* 旋转Eye point */
 	Vec3d z = Vec3d(0, 0, 1);
-	Vec3d zAt = _cameraController.switchCoordinateSystem_vector(z, COORD_TYPE_WORLD, COORD_TYPE_AT_POINT);
+	Vec3d zAt = _cameraController.switchCoordinateSystem_vector(z, COORD_TYPE_WORLD, COORD_TYPE_AT);
 
 	Vec3d eye = Vec3d(0, 0, 1);
 	double cosAngle = eye * zAt;
@@ -319,7 +319,7 @@ void Camera2D::onFlyBack()
 		{
 			axis = Vec3d(0, 0, 1);
 		}
-		_cameraController.rotateCamera(axis, step, COORD_TYPE_AT_POINT, EYE_POINT_AND_AT_POINT);
+		_cameraController.rotateCamera(axis, step, COORD_TYPE_AT, EYE_POINT_AND_AT_POINT);
 
 		done = false;
 	}
@@ -349,7 +349,7 @@ void Camera2D::onFlyBack()
 			axis = Vec3d(0, 0, 1);
 		}
 		
-		_cameraController.rotateCamera(axis, step, COORD_TYPE_BASE_POINT_AT_POINT, EYE_POINT_AND_AT_POINT);
+		_cameraController.rotateCamera(axis, step, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT);
 
 		done = false;
 	}
