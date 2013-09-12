@@ -176,19 +176,21 @@ void CameraController::testTranslateCamera(const Vec3d& vec, CoordType coordType
 		tmpVec = vec;
 		break;
 
-	case COORD_TYPE_EYE_POINT:
+	case COORD_TYPE_EYE:
 		tmpVec = switchCoordinateSystem_vector(vec, _eyeToWorldMatrix, WORLD_MATRIX);		
 		break;
 
-	case COORD_TYPE_AT_POINT:
+	case COORD_TYPE_AT:
 		tmpVec = switchCoordinateSystem_vector(vec, _atToWorldMatrix, WORLD_MATRIX);
 		break;
 
-	case COORD_TYPE_BASE_POINT_EYE_POINT:
+	case COORD_TYPE_BASE_EYE:
+	case COORD_TYPE_BASE_EYE_2:
 		tmpVec = switchCoordinateSystem_vector(vec, _baseEyeToWorldMatrix, WORLD_MATRIX);		
 		break;
 
-	case COORD_TYPE_BASE_POINT_AT_POINT:
+	case COORD_TYPE_BASE_AT:
+	case COORD_TYPE_BASE_AT_2:
 		tmpVec = switchCoordinateSystem_vector(vec, _baseAtToWorldMatrix, WORLD_MATRIX);		
 		break;
 	}
@@ -280,22 +282,36 @@ void CameraController::testRotateCamera( const Vec3d& axis, double angle, CoordT
 	case COORD_TYPE_WORLD:
 		break;
 
-	case COORD_TYPE_EYE_POINT:
+	case COORD_TYPE_EYE:
 		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _eyeToWorldMatrix, WORLD_MATRIX);
 		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _eyeToWorldMatrix, WORLD_MATRIX);
 		break;
 
-	case COORD_TYPE_AT_POINT:
+	case COORD_TYPE_AT:
 		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _atToWorldMatrix, WORLD_MATRIX);
 		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _atToWorldMatrix, WORLD_MATRIX);
 		break;
 
-	case COORD_TYPE_BASE_POINT_EYE_POINT:
+	case COORD_TYPE_BASE_EYE:
 		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _baseEyeToWorldMatrix, WORLD_MATRIX);
 		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _baseEyeToWorldMatrix, WORLD_MATRIX);
 		break;
 
-	case COORD_TYPE_BASE_POINT_AT_POINT:
+	case COORD_TYPE_BASE_EYE_2:
+		ptWorld1 = ptWorld1 + _currEye;  /* 将旋转轴转换到COORD_TYPE_BASE_EYE坐标系下 */
+		ptWorld2 = ptWorld2 + _currEye;
+		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _baseEyeToWorldMatrix, WORLD_MATRIX);
+		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _baseEyeToWorldMatrix, WORLD_MATRIX);
+		break;
+
+	case COORD_TYPE_BASE_AT:
+		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _baseAtToWorldMatrix, WORLD_MATRIX);
+		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _baseAtToWorldMatrix, WORLD_MATRIX);
+		break;
+
+	case COORD_TYPE_BASE_AT_2:
+		ptWorld1 = ptWorld1 + _currAt;  /* 将旋转轴转换到COORD_TYPE_BASE_AT坐标系下 */
+		ptWorld2 = ptWorld2 + _currAt;
 		ptWorld1 = switchCoordinateSystem_point(ptWorld1, _baseAtToWorldMatrix, WORLD_MATRIX);
 		ptWorld2 = switchCoordinateSystem_point(ptWorld2, _baseAtToWorldMatrix, WORLD_MATRIX);
 		break;
@@ -453,20 +469,24 @@ Vec3d CameraController::switchCoordinateSystem_vector( const Vec3d& vec, CoordTy
 
 	switch (from)
 	{
-	case COORD_TYPE_WORLD:					matFrom = &WORLD_MATRIX;			break;
-	case COORD_TYPE_EYE_POINT:				matFrom = &_eyeToWorldMatrix;		break;
-	case COORD_TYPE_AT_POINT:				matFrom = &_atToWorldMatrix;		break;
-	case COORD_TYPE_BASE_POINT_EYE_POINT:	matFrom = &_baseEyeToWorldMatrix;	break;
-	case COORD_TYPE_BASE_POINT_AT_POINT:	matFrom = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_WORLD:		matFrom = &WORLD_MATRIX;			break;
+	case COORD_TYPE_EYE:		matFrom = &_eyeToWorldMatrix;		break;
+	case COORD_TYPE_AT:			matFrom = &_atToWorldMatrix;		break;
+	case COORD_TYPE_BASE_EYE:	matFrom = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_EYE_2:	matFrom = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT:	matFrom = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT_2:	matFrom = &_baseAtToWorldMatrix;	break;
 	}
 
 	switch (to)
 	{
-	case COORD_TYPE_WORLD:					matTo = &WORLD_MATRIX;			break;
-	case COORD_TYPE_EYE_POINT:				matTo = &_eyeToWorldMatrix;		break;
-	case COORD_TYPE_AT_POINT:				matTo = &_atToWorldMatrix;		break;
-	case COORD_TYPE_BASE_POINT_EYE_POINT:	matTo = &_baseEyeToWorldMatrix;	break;
-	case COORD_TYPE_BASE_POINT_AT_POINT:	matTo = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_WORLD:		matTo = &WORLD_MATRIX;			break;
+	case COORD_TYPE_EYE:		matTo = &_eyeToWorldMatrix;		break;
+	case COORD_TYPE_AT:			matTo = &_atToWorldMatrix;		break;
+	case COORD_TYPE_BASE_EYE:	matTo = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_EYE_2:	matTo = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT:	matTo = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT_2:	matTo = &_baseAtToWorldMatrix;	break;
 	}
 
 	return switchCoordinateSystem_vector(vec, *matFrom, *matTo);	
@@ -478,23 +498,39 @@ Vec3d CameraController::switchCoordinateSystem_point( const Vec3d& point, CoordT
 
 	switch (from)
 	{
-	case COORD_TYPE_WORLD:					matFrom = &WORLD_MATRIX;			break;
-	case COORD_TYPE_EYE_POINT:				matFrom = &_eyeToWorldMatrix;		break;
-	case COORD_TYPE_AT_POINT:				matFrom = &_atToWorldMatrix;		break;
-	case COORD_TYPE_BASE_POINT_EYE_POINT:	matFrom = &_baseEyeToWorldMatrix;	break;
-	case COORD_TYPE_BASE_POINT_AT_POINT:	matFrom = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_WORLD:		matFrom = &WORLD_MATRIX;			break;
+	case COORD_TYPE_EYE:		matFrom = &_eyeToWorldMatrix;		break;
+	case COORD_TYPE_AT:			matFrom = &_atToWorldMatrix;		break;
+	case COORD_TYPE_BASE_EYE:	matFrom = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_EYE_2:	matFrom = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT:	matFrom = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT_2:	matFrom = &_baseAtToWorldMatrix;	break;
 	}
 
 	switch (to)
 	{
-	case COORD_TYPE_WORLD:					matTo = &WORLD_MATRIX;			break;
-	case COORD_TYPE_EYE_POINT:				matTo = &_eyeToWorldMatrix;		break;
-	case COORD_TYPE_AT_POINT:				matTo = &_atToWorldMatrix;		break;
-	case COORD_TYPE_BASE_POINT_EYE_POINT:	matTo = &_baseEyeToWorldMatrix;	break;
-	case COORD_TYPE_BASE_POINT_AT_POINT:	matTo = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_WORLD:		matTo = &WORLD_MATRIX;			break;
+	case COORD_TYPE_EYE:		matTo = &_eyeToWorldMatrix;		break;
+	case COORD_TYPE_AT:			matTo = &_atToWorldMatrix;		break;
+	case COORD_TYPE_BASE_EYE:	matTo = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_EYE_2:	matTo = &_baseEyeToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT:	matTo = &_baseAtToWorldMatrix;	break;
+	case COORD_TYPE_BASE_AT_2:	matTo = &_baseAtToWorldMatrix;	break;
 	}
 
-	return switchCoordinateSystem_point(point, *matFrom, *matTo);	
+	Vec3d res = switchCoordinateSystem_point(point, *matFrom, *matTo);	
+	switch (from)
+	{
+	case COORD_TYPE_BASE_EYE_2:	res = res + _currEye;	break;
+	case COORD_TYPE_BASE_AT_2:	res = res + _currAt;	break;
+	}
+	switch (to)
+	{
+	case COORD_TYPE_BASE_EYE_2:	res = res - _currEye;	break;
+	case COORD_TYPE_BASE_AT_2:	res = res - _currAt;	break;
+	}
+
+	return res;
 }
 
 Vec3d CameraController::switchCoordinateSystem_vector( const Vec3d& vec, const Matrixd& from, const Matrixd& to )
@@ -529,11 +565,11 @@ const Matrixd& CameraController::getCoordMatrix( CoordType coord ) const
 	{
 	case COORD_TYPE_WORLD:
 		return WORLD_MATRIX;
-	case COORD_TYPE_EYE_POINT:
+	case COORD_TYPE_EYE:
 		return _eyeToWorldMatrix;
-	case COORD_TYPE_AT_POINT:
+	case COORD_TYPE_AT:
 		return _atToWorldMatrix;
-	case COORD_TYPE_BASE_POINT_EYE_POINT:
+	case COORD_TYPE_BASE_EYE:
 		return _baseEyeToWorldMatrix;
 	default:
 		return _baseAtToWorldMatrix;
