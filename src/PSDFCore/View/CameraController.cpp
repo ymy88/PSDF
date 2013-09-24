@@ -46,7 +46,7 @@ void CameraController::adjustCamera( int viewWidth, int viewHeight, double distB
 	group->unref();
 
 	double z;
-	z = bounding.center().z();
+	z = abs(bounding.center().z());
 
 	_camera->setViewport( 0, 0, viewWidth, viewHeight );
 
@@ -66,7 +66,7 @@ void CameraController::adjustCamera( int viewWidth, int viewHeight, double distB
 	}
 
 	_initEye = Vec3d(0, 0, dist);
-	_initAt = Vec3d(0, 0, distBetweenAtAndBase + z);
+	_initAt = Vec3d(0, 0, distBetweenAtAndBase);
 	_initUp = Vec3d(0, 1, 0);
 	_initBase = Vec3d(0, 0, 0);
 

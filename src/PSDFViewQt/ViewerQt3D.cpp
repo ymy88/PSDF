@@ -13,7 +13,7 @@ QGLWidgetAdapter( parent, displayMode, viewType)
 {
 	StateSet* sceneDataState = _sceneData->getOrCreateStateSet();
 	
-	sceneDataState->setMode(GL_MULTISAMPLE, StateAttribute::ON);
+	//sceneDataState->setMode(GL_MULTISAMPLE, StateAttribute::ON);
 	sceneDataState->setMode(GL_DEPTH_TEST, StateAttribute::ON);
 	
 	setMainCamera(new Camera3D(this, needRoam));

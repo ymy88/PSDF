@@ -21,7 +21,7 @@ ViewerQt2D::ViewerQt2D( QWidget * parent, DisplayMode displayMode, const string&
 
 	state->setMode( GL_DEPTH_TEST, StateAttribute::OFF );
 	state->setMode( GL_LIGHTING, StateAttribute::OFF );
-	state->setMode( GL_MULTISAMPLE, StateAttribute::ON );
+	//state->setMode( GL_MULTISAMPLE, StateAttribute::ON );
 
 	setMainCamera(new Camera2D(this, needRoam));
 

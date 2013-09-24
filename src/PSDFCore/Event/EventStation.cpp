@@ -68,11 +68,9 @@ bool EventStation::EventStationDispatcher::peekEvent( unsigned int &eventType, i
 	_station->_eventQueueMutex.unlock();
 	_station->_freeSem.release();
 	
-	
 	eventType	= e.eventType;
 	param1		= e.param1;
 	param2		= e.param2;
-
 
 	return true;
 }

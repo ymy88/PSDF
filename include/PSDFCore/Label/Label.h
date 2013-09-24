@@ -25,6 +25,7 @@ public:
 	void					setBackgroundColor(float r, float g, float b, float a);
 
 	void					setImageMark(const string& imageFile);
+	void					setImageMark(Image* image);
 	void					setNodeMark(Node* node);
 
 	virtual BoundingSphere	computeBound() const;

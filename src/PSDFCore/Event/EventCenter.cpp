@@ -33,10 +33,11 @@ bool EventCenter::EventCenterDispatcher::peekEvent( unsigned int &eventType, int
 	{
 		if( _eventCenter->_pUsedSem[ pl ]->tryAcquire() )
 		{
-			eventType			= _eventCenter->_centerEventQueue[ pl ][ _eventCenter->_getPos[ pl ] ].eventType;
-			param1				= _eventCenter->_centerEventQueue[ pl ][ _eventCenter->_getPos[ pl ] ].param1;
-			param2				= _eventCenter->_centerEventQueue[ pl ][ _eventCenter->_getPos[ pl ] ].param2;
-			stationId			= _eventCenter->_centerEventQueue[ pl ][ _eventCenter->_getPos[ pl ] ].stationId;
+			EventCenterStruct e = _eventCenter->_centerEventQueue[pl][_eventCenter->_getPos[pl]];
+			eventType			= e.eventType;
+			param1				= e.param1;
+			param2				= e.param2;
+			stationId			= e.stationId;
 			isHighPriority		= (pl == PRIORITY_HIGH);
 
 			_eventCenter->_getPos[ pl ] = ( _eventCenter->_getPos[pl] == EVENT_CENTER_QUEUE_LENGTH - 1 ) ? 0 : _eventCenter->_getPos[ pl ] + 1;

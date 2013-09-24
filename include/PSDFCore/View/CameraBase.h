@@ -44,6 +44,7 @@ public:
 public:
 	void						setCameraMinDistance(double dist);
 	void						setCameraMaxDistance(double dist);
+	void						setZoomInThreshold(double threshold);
 
 	virtual void				adjustCamera(int viewWidth, int viewHeight );
 	virtual void				resize(int viewWidth, int viewHeight);
@@ -117,8 +118,10 @@ protected:
 	double				_currFlyBackAngle;
 	double				_flyBackRate;
 
-	double				_cameraMinDistance;		/* 相机距离原点(3D)或XY平面(2D)的最短距离 */
-	double				_cameraMaxDistance;		/* 相机距离原点(3D)或XY平面(2D)的最长距离 */
+	double				_cameraMinDistance;		/* 观察点距离原点(3D)或XY平面(2D)的最短距离 */
+	double				_cameraMaxDistance;		/* 观察点距离原点(3D)或XY平面(2D)的最长距离 */
+	double				_zoomInThreshold;		/* 放大时，当视点应前进的距离小于此值时，则前进此距离 */		
+
 	double				_streetViewAngle;
 
 	CameraController	_cameraController;

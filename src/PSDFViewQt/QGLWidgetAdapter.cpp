@@ -25,7 +25,18 @@ void ViewerUpdater::updateAllViewers()
 QGLWidgetAdapter::QGLWidgetAdapter( QWidget * parent, DisplayMode displayMode, const string& viewType):
 	QGLWidget(parent), OsgViewerBase(displayMode, viewType)
 {
-	_gw = new osgViewer::GraphicsWindowEmbedded(0, 0, width(), height());
+	GraphicsContext::Traits* traits = new GraphicsContext::Traits;
+	traits->x = 0;
+	traits->y = 0;
+	traits->width = width();
+	traits->height = height();
+	traits->samples = 4;
+
+	_gw = new osgViewer::GraphicsWindowEmbedded(traits);
+
+	_gw->setDataVariance( Object::DYNAMIC );
+
+	//_gw = new osgViewer::GraphicsWindowEmbedded(0, 0, width(), height());
 
 	_gw->setDataVariance( Object::DYNAMIC );
     

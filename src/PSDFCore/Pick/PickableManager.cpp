@@ -39,7 +39,12 @@ void PickableManager::handleSystemEvent( unsigned eventType, int param1, int par
 	case LBUTTON_UP:		
 		getFromParam( param1, mouseScrX, mouseScrY );
 		onLButtonUp( mouseScrX, mouseScrY );
-		break;		
+		break;	
+
+	case LBUTTON_DOUBLECLICK:
+		getFromParam(param1, mouseScrX, mouseScrY);
+		onLButtonDoubleClick(mouseScrX, mouseScrY);
+		break;
 
 	case RBUTTON_DOWN:
 		_beginDrag = false;
@@ -166,4 +171,26 @@ void PickableManager::unregisterPickable( Pickable * pickable )
 		}
 	}
 	_registerMutex.unlock();
+}
+
+void PickableManager::onLButtonDoubleClick( short mouseScrX, short mouseScrY )
+{
+	if( _currPicked )
+	{
+		_currPicked = NULL;
+		SceneCenter::inst()->setMouseMode(MOUSE_MODE_ROAM);
+	}
+
+	for( unsigned int i = 0; i < _pickables.size(); ++i )
+	{
+		Node* pickablcNode = dynamic_cast<Node*>(_pickables[i]);
+		if( pickablcNode && pickablcNode->getNodeMask() == 0 ) { continue; }
+
+		if( _pickables[i]->isPicked(mouseScrX, mouseScrY) )
+		{
+			_currPicked = _pickables[i];
+			_currPicked->onLDClick(mouseScrX, mouseScrY);
+			break;
+		}
+	}
 }

@@ -77,93 +77,131 @@ void Camera3D::rotateCameraXY( short currMouseX, short currMouseY )
 
 void Camera3D::rotateCameraZ( short currMouseX, short currMouseY )
 {
+	int xdiff = abs(currMouseX - _lastMouseX);
+	int ydiff = abs(currMouseY - _lastMouseY);
+	double angle = (currMouseY - _lastMouseY) * 100 / EARTH_R;
+
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
 	screenToWorld(currMouseX, currMouseY, currMouseWorld);
-	currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_BASE_EYE);
-	lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_BASE_EYE);
-	currMouseWorld.z() = 0;
-	lastMouseWorld.z() = 0;
 
-	Vec3d v1 = currMouseWorld;
-	Vec3d v2 = lastMouseWorld;
-	v1.normalize();
-	v2.normalize();
-
-	double mul = v1 * v2;
-	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
-	double angle = acos(mul);
-	Vec3d axis = v1 ^ v2;
-
-	if (axis.z() > 1e-8)
+	if (xdiff > ydiff)
 	{
-		_cameraController.rotateCamera(AXIS_Z, angle, COORD_TYPE_BASE_EYE, EYE_POINT_AND_AT_POINT);
+		currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_BASE_EYE);
+		lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_BASE_EYE);
+		currMouseWorld.z() = 0;
+		lastMouseWorld.z() = 0;
+
+		Vec3d v1 = currMouseWorld;
+		Vec3d v2 = lastMouseWorld;
+		v1.normalize();
+		v2.normalize();
+
+		double mul = v1 * v2;
+		mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
+		double angle = acos(mul);
+		Vec3d axis = v1 ^ v2;
+
+		if (axis.z() > 1e-8)
+		{
+			_cameraController.rotateCamera(AXIS_Z, angle, COORD_TYPE_BASE_EYE, EYE_POINT_AND_AT_POINT);
+		}
+		else if (axis.z() < -1e-8)
+		{
+			_cameraController.rotateCamera(AXIS_Z, -angle, COORD_TYPE_BASE_EYE, EYE_POINT_AND_AT_POINT);
+		}
 	}
-	else if (axis.z() < -1e-8)
+	else
 	{
-		_cameraController.rotateCamera(AXIS_Z, -angle, COORD_TYPE_BASE_EYE, EYE_POINT_AND_AT_POINT);
+		Vec3d v = lastMouseWorld - currMouseWorld;
+		v.x() = v.y() = 0;
+
+		Vec3d resEye, resAt, resBase;
+		_cameraController.testTranslateCamera(v, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT, resEye, resAt, resBase);
+		double len2 = resAt.length2();
+		if (len2 >= _cameraMinDistance * _cameraMinDistance &&
+			len2 <= _cameraMaxDistance * _cameraMaxDistance)
+		{
+			_cameraController.confirmTest();
+		}
 	}
 }
 
 void Camera3D::rotateCameraStreetView( short currMouseX, short currMouseY )
 {
-	/* 上升下降 */
-
 	const double maxAngle = DegreesToRadians(89.0);
 
+	int xdiff = abs(currMouseX - _lastMouseX);
+	int ydiff = abs(currMouseY - _lastMouseY);
 	double angle = (currMouseY - _lastMouseY) * 100 / EARTH_R;
-	if (_streetViewAngle + angle > maxAngle)
+
+	if (ydiff > xdiff)
 	{
-		angle = maxAngle - _streetViewAngle;
+		/* 上升下降 */
+
+		if (_streetViewAngle + angle > maxAngle)
+		{
+			angle = maxAngle - _streetViewAngle;
+		}
+		else if (_streetViewAngle + angle < 1e-10)
+		{
+			angle = -_streetViewAngle;
+		}
+		_streetViewAngle += angle;
+
+		_cameraController.rotateCamera(AXIS_X, angle, COORD_TYPE_AT, EYE_POINT_AND_AT_POINT);
 	}
-	else if (_streetViewAngle + angle < 1e-10)
+	else
 	{
-		angle = -_streetViewAngle;
+		/* 绕观察点旋转 */
+
+		Vec3d lastMouseWorld, currMouseWorld;
+		screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
+		screenToWorld(currMouseX, currMouseY, currMouseWorld);
+		currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
+		lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
+		currMouseWorld.z() = 0;
+		lastMouseWorld.z() = 0;
+
+		Vec3d v1 = currMouseWorld;
+		Vec3d v2 = lastMouseWorld;
+		v1.normalize();
+		v2.normalize();
+
+		double mul = v1 * v2;
+		mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
+		angle = acos(mul);
+		Vec3d axis = v1 ^ v2;
+		if (abs(axis.z()) < 1e-8)
+		{
+			return;
+		}
+
+		_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT);
 	}
-	_streetViewAngle += angle;
-
-	_cameraController.rotateCamera(AXIS_X, angle, COORD_TYPE_AT, EYE_POINT_AND_AT_POINT);
-
-
-	/* 绕观察点旋转 */
-
-	Vec3d lastMouseWorld, currMouseWorld;
-	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);
-	screenToWorld(currMouseX, currMouseY, currMouseWorld);
-	currMouseWorld = _cameraController.switchCoordinateSystem_point(currMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
-	lastMouseWorld = _cameraController.switchCoordinateSystem_point(lastMouseWorld, COORD_TYPE_WORLD, COORD_TYPE_AT);
-	currMouseWorld.z() = 0;
-	lastMouseWorld.z() = 0;
-
-	Vec3d v1 = currMouseWorld;
-	Vec3d v2 = lastMouseWorld;
-	v1.normalize();
-	v2.normalize();
-
-	double mul = v1 * v2;
-	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
-	angle = acos(mul);
-	Vec3d axis = v1 ^ v2;
-	if (abs(axis.z()) < 1e-8)
-	{
-		return;
-	}
-
-	_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT);
-
 }
 
 void Camera3D::zoomIn()
 {
 	double dist = (_cameraController.getCurrEye() - _cameraController.getCurrAt()).length();
 	double step;
+	double threshold = _zoomInThreshold;
 	if (_modifier == ControlModifier)
 	{
 		step = dist * 0.02;
+		threshold *= 0.1;
 	}
 	else 
 	{
 		step = dist * 0.2;
+	}
+	if (step < threshold)
+	{
+		step = threshold;
+	}
+	if (step > dist)
+	{
+		return;
 	}
 
 	_cameraController.translateCamera(Vec3d(0, 0, -step), COORD_TYPE_EYE, EYE_POINT);

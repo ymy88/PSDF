@@ -34,6 +34,7 @@ protected:
 private:
 	void							onLButtonDown( short mouseScrX, short mouseScrY );
 	void							onLButtonUp( short mouseScrX, short mouseScrY );
+	void							onLButtonDoubleClick( short mouseScrX, short mouseScrY );
 	void							preDrag( short scrX, short scrY );
 	void							onDrag( short endScrX, short endScrY );
 

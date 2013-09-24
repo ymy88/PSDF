@@ -2,7 +2,6 @@
 # pragma warning(disable: 4100)		/*  unreferenced formal parameter   */
 # pragma warning(disable: 4127)		/*  Conditional expression is constant  */
 # pragma warning(disable: 4251)		/*  class 'A' needs to have dll interface for to be used by clients of class 'B'.  */
-# pragma warning(disable: 4819)		
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <process.h>

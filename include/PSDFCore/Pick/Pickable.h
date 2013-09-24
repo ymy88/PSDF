@@ -11,7 +11,7 @@ public:
 	Pickable() : _lastScrX(0), _lastScrY(0), _parentViewer(NULL) {}
 	virtual ~Pickable() { if (_parentViewer) { _parentViewer->getPickableManager()->unregisterPickable(this); } }
 
-	void enablePickAndDragInViewer(OsgViewerBase* viewer)
+	void enablePickAndDragInViewer(const OsgViewerBase* viewer)
 	{
 		if (_parentViewer)
 		{
@@ -31,16 +31,17 @@ public:
 	/* actions */
 	virtual void	onPick(int mouseScrX, int mouseScrY)	{}
 	virtual void	onCancelPick()							{}
+	virtual void	onLDClick(int mouseScrX, int mouseScrY)	{}
 	virtual void	onPreDrag()								{}
 	virtual void	onDrag(int mouseScrX, int mouseScrY)	{ TOUCH( mouseScrX ); TOUCH( mouseScrY ); }
 
 protected:
-	void			getLastScrCoord(int& x, int& y)			{ x = _lastScrX; y = _lastScrY; }
-	OsgViewerBase*	getParentViewer()						{ return _parentViewer; }
+	void					getLastScrCoord(int& x, int& y)			{ x = _lastScrX; y = _lastScrY; }
+	const OsgViewerBase*	getParentViewer()						{ return _parentViewer; }
 
 private:
 	int _lastScrX;
 	int _lastScrY;
 
-	OsgViewerBase*	_parentViewer;
+	const OsgViewerBase*	_parentViewer;
 };

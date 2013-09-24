@@ -10,6 +10,7 @@ CameraBase::CameraBase( OsgViewerBase * parentViewer, bool needRoam )
 	_needRoam = needRoam;
 	_cameraMinDistance = 1000;
 	_cameraMaxDistance = 1e10;
+	_zoomInThreshold = 0.05;
 
 	_cameraController.setCamera(this);
 
