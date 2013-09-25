@@ -84,6 +84,11 @@ void Camera2D::translateCamera( short currMouseX, short currMouseY )
 	Vec3d diff = lastMouseWorld - currMouseWorld;
 	Vec3d finalVec = _cameraController.switchCoordinateSystem_vector(diff, COORD_TYPE_WORLD, COORD_TYPE_AT);
 	finalVec.z() = 0;
+	if (finalVec.length2() < _moveThreshold * _moveThreshold)
+	{
+		finalVec.normalize();
+		finalVec = finalVec * _moveThreshold;
+	}
 
 	/* 移动视点位置 */
 	_cameraController.translateCamera(finalVec, COORD_TYPE_WORLD, ALL_POINTS);

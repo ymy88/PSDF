@@ -75,6 +75,7 @@ DerivedData/
 *.so
 *.gch
 *.pch
+*.dylib
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/

@@ -71,6 +71,10 @@ void Camera3D::rotateCameraXY( short currMouseX, short currMouseY )
 	double mul = v1 * v2;
 	mul = mul > 1 ? 1 : mul;  /* 由于double的精度问题，v1 * v2可能会略微大于1，导致acos()函数异常 */
 	double angle = acos(mul);
+	if (angle * EARTH_R < _moveThreshold)
+	{
+		angle = _moveThreshold / EARTH_R;
+	}
 
 	_cameraController.rotateCamera(axis, angle, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT);
 }
@@ -114,13 +118,14 @@ void Camera3D::rotateCameraZ( short currMouseX, short currMouseY )
 	else
 	{
 		Vec3d v = lastMouseWorld - currMouseWorld;
+		v = _cameraController.switchCoordinateSystem_vector(v, COORD_TYPE_WORLD, COORD_TYPE_AT);
+		v.z() = v.y();
 		v.x() = v.y() = 0;
 
 		Vec3d resEye, resAt, resBase;
 		_cameraController.testTranslateCamera(v, COORD_TYPE_BASE_AT, EYE_POINT_AND_AT_POINT, resEye, resAt, resBase);
-		double len2 = resAt.length2();
-		if (len2 >= _cameraMinDistance * _cameraMinDistance &&
-			len2 <= _cameraMaxDistance * _cameraMaxDistance)
+		if (resAt.length2() >= _cameraMinDistance * _cameraMinDistance &&
+			resEye.length2() <= _cameraMaxDistance * _cameraMaxDistance)
 		{
 			_cameraController.confirmTest();
 		}
@@ -185,7 +190,7 @@ void Camera3D::zoomIn()
 {
 	double dist = (_cameraController.getCurrEye() - _cameraController.getCurrAt()).length();
 	double step;
-	double threshold = _zoomInThreshold;
+	double threshold = _zoomThreshold;
 	if (_modifier == ControlModifier)
 	{
 		step = dist * 0.02;
@@ -212,14 +217,20 @@ void Camera3D::zoomIn()
 void Camera3D::zoomOut()
 {
 	double dist = (_cameraController.getCurrEye() - _cameraController.getCurrAt()).length();
+	double threshold = _zoomThreshold;
 	double step;
 	if (_modifier == ControlModifier)
 	{
 		step = dist * 0.02;
+		threshold *= 0.1;
 	}
 	else
 	{
 		step = dist * 0.2;
+	}
+	if (step < threshold)
+	{
+		step = threshold;
 	}
 
 	Vec3d testEye, testAt, testUp;
@@ -229,7 +240,6 @@ void Camera3D::zoomOut()
 		_cameraController.confirmTest();
 		checkShouldDisableAutoComputeNearFar();
 	}
-
 }
 
 void Camera3D::onFly()
