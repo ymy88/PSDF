@@ -22,7 +22,7 @@ NetworkCenter::~NetworkCenter()
 	{
 		if (_connections[i])
 		{
-			PosixThread::waitUntilDone(_connections[i]->getThreadId());
+			_connections[i]->waitUntilDone();
 			delete _connections[i];
 		}
 	}

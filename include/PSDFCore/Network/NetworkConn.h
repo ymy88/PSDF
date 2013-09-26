@@ -20,7 +20,7 @@ public:
 	virtual ~NetworkConn();
 
 	virtual bool	send(char* data, size_t length) = 0;
-	virtual void	quit() = 0;
+	virtual void	quit() { this->stop(); }
 
 	static int		onReceive(char* data, size_t receivedLen, NetworkConn* conn);
 

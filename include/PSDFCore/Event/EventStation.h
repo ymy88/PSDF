@@ -84,8 +84,7 @@ private:
 	//event handler queues for every event cluster.
 	EventHandlerQueue			_eventHandlerQueues[ EVENT_GROUP_COUNT ];				/* 消息处理者队列 */
 
-	EventStationDispatcher *	_dispatchers;											/* 消息站消息投递分发器 */
-	short						_dispatcherCount;										//消息投递分发器个数
+	EventStationDispatcher		_dispatcher;											/* 消息站消息投递分发器 */
 
 	EventStationStruct			_stationEventQueue[ EVENT_STATION_QUEUE_LENGTH ];		/* 消息站消息队列 */
 	PosixMutex					_eventQueueMutex;										/* 消息队列互斥量 */

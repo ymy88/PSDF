@@ -142,7 +142,7 @@ const vector< EventHandler * >& EventStation::EventHandlerQueue::beginUpdate()
 
 	solvePending();
 
-	_handlersLock.unlock();  /* unlock for write */
+	_handlersLock.unlockForWrite();
 
 	_handlersLock.lockForRead();
 	
@@ -151,7 +151,7 @@ const vector< EventHandler * >& EventStation::EventHandlerQueue::beginUpdate()
 
 void EventStation::EventHandlerQueue::endUpdate()
 {
-	_handlersLock.unlock();  /* unlock for read */
+	_handlersLock.unlockForRead();
 }
 
 void EventStation::EventHandlerQueue::addHandler( EventHandler * handler )
@@ -289,27 +289,9 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 		_stationId = stationId;
 	}
 
-	_nextStationId <<= 1;
+	_dispatcher._station = this;
 
-	/* 非视窗的消息站 */
-	if( _stationId == EVENT_STATION_ID_NON_VIEW )
-	{
-		//_dispatcherCount = 10;
-		_dispatcherCount = 1;
-	}
-	/* 视窗的消息站 */
-	else
-	{
-		_dispatcherCount = 1;	
-	}
-
-	_dispatchers = new EventStationDispatcher[ _dispatcherCount ];
-
-	for( int i = 0; i < _dispatcherCount; ++i )
-	{
-		_dispatchers[ i ]._station = this;
-	}
-
+	_nextStationId += 1;
 
 
 	/* 
@@ -322,10 +304,7 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 	/* 非视窗的消息站启动消息投递分发线程 */
 	if( _stationId == EVENT_STATION_ID_NON_VIEW )
 	{
-		for( int i = 0; i < _dispatcherCount; i++ )
-		{
-			_dispatchers[ i ].start();
-		}
+		_dispatcher.start();
 	}
 
 	_triggerCount = 0;
@@ -335,18 +314,6 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 
 EventStation::~EventStation()
 {
-#ifndef _WIN32
-	for (int i = 0; i < _dispatcherCount; ++i)
-	{
-		_dispatchers[i].stop();
-	}
-
-	for (int i = 0; i < _dispatcherCount; ++i)
-	{
-		PosixThread::waitUntilDone(_dispatchers[i].getThreadId());
-	}
-#endif
-	delete [] _dispatchers;
 }
 
 /* 二级消息中心(消息站)将消息处理者添加到消息处理者队列 */
@@ -403,12 +370,7 @@ void EventStation::triggerEvent( unsigned eventType, int param1, int param2, boo
 /* 视窗消息站手动消息投递分发 */
 void EventStation::manuallyDispatchEvent()
 {
-	if( _dispatcherCount != 1 )
-	{
-		return;
-	}
-
-	_dispatchers[0].manuallyRun();
+	_dispatcher.manuallyRun();
 }
 
 void EventStation::outputLog( ofstream& fout )

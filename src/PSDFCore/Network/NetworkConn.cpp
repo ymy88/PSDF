@@ -142,6 +142,8 @@ void Multicast::quit()
 		errMsg = code.message();
 	}
 	_ioService.stop();
+
+	this->stop();
 }
 
 
@@ -165,7 +167,7 @@ void TCP::run()
 
 void TCP::quit()
 {
-
+	this->stop();
 }
 
 
@@ -189,5 +191,5 @@ void UDP::run()
 
 void UDP::quit()
 {
-
+	this->stop();
 }
