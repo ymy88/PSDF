@@ -69,7 +69,7 @@ OsgViewerBase::OsgViewerBase(DisplayMode displayMode, const string& viewType)
 
     setThreadingModel( osgViewer::Viewer::SingleThreaded );
 
-	_statsHandler = new StatsHandler(this);
+	//_statsHandler = new StatsHandler(this);
 
 
 	/* light */
@@ -115,7 +115,7 @@ OsgViewerBase::~OsgViewerBase()
 	delete _layerManager;
 	delete _pickableManager;
 	delete _screenManager;
-	delete _statsHandler;
+	//delete _statsHandler;
 }
 
 long64 OsgViewerBase::currFrame() const

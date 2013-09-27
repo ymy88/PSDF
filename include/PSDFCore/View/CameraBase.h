@@ -44,7 +44,8 @@ public:
 public:
 	void						setCameraMinDistance(double dist);
 	void						setCameraMaxDistance(double dist);
-	void						setZoomInThreshold(double threshold);
+	void						setZoomThreshold(double threshold) { _zoomThreshold = (threshold > 0.001 ? threshold : 0.001); };
+	void						setMoveThreshold(double threshold) { _moveThreshold = (threshold > 0.001 ? threshold : 0.001); };
 
 	virtual void				adjustCamera(int viewWidth, int viewHeight );
 	virtual void				resize(int viewWidth, int viewHeight);
@@ -120,7 +121,8 @@ protected:
 
 	double				_cameraMinDistance;		/* 观察点距离原点(3D)或XY平面(2D)的最短距离 */
 	double				_cameraMaxDistance;		/* 观察点距离原点(3D)或XY平面(2D)的最长距离 */
-	double				_zoomInThreshold;		/* 放大时，当视点应前进的距离小于此值时，则前进此距离 */		
+	double				_zoomThreshold;			/* 缩放时，当视点应前进的距离小于此值时，则前进此距离 */		
+	double				_moveThreshold;			/* 移动时，当视点应前进的距离小于此值时，则前进此距离 */		
 
 	double				_streetViewAngle;
 

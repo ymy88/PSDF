@@ -10,17 +10,15 @@ enum HandlerPriority
 {
 	PRIORITY_1, /* 最低优先级 */
 	PRIORITY_2,
-	PRIORITY_3,
-	PRIORITY_4,
-	PRIORITY_5	/* 最高优先级 */
+	PRIORITY_3  /* 最高优先级 */
 };
 
 class PSDF_CORE_DLL_DECL EventHandler
 {
 public:
-	EventHandler() : _priority( PRIORITY_3 ) {}
+	EventHandler() : _priority( PRIORITY_2 ) {}
 	EventHandler( HandlerPriority pr ) : _priority( pr ) {}
-	EventHandler( const EventHandler& handler ) { _priority = handler._priority; _handlerMutex = handler._handlerMutex; }
+	EventHandler( const EventHandler& handler ) { _priority = handler._priority; }
 
 	virtual ~EventHandler() {}
 
@@ -32,7 +30,7 @@ public:
 	{
 		/* 此处使用mutex保证handle函数只会同时被一个线程调用 */
 
-		_handlerMutex.lock();
+		_handlerMutex.tryLock();
 		_currStationId = currStationId;
 		if( eventType & SYSTEM_EVENT_GROUP )
 		{

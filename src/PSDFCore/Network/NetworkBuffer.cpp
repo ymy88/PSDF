@@ -3,7 +3,8 @@
 #include <PSDFCore/Network/NetworkBuffer.h>
 
 NetworkBuffer::NetworkBuffer( OnReceiveCallback onReceive ) :
-_onReceive(onReceive)
+_onReceive(onReceive),
+_quit(false)
 {
 	_buffer = new char[NETWORK_BUFFER_LENGTH];
 	_putPos = BUFFER_BEGIN_INDEX;
@@ -41,7 +42,7 @@ void NetworkBuffer::run()
 	size_t receivedLen = 0; /* 网络收到的数据长度 */
 	size_t dataLen = 0; /* 一个完整的数据包的长度 */
 
-	while (true)
+	while (!_quit)
 	{
 		while (_getPos == _putPos)
 		{

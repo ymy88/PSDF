@@ -53,7 +53,7 @@ void EventCenter::EventCenterDispatcher::dispatchEvent( unsigned int eventType, 
 {
 	_eventCenter->_dispatchCount++;
 	
-	if( stationId == EVENT_STATION_ID_ALL_STA )
+	if( stationId == EVENT_STATION_ID_ALL_STA || eventType == APP_QUIT)
 	{
 		for( unsigned int i = 0; i < _eventCenter->_eventStations.size(); ++i )
 		{
@@ -112,8 +112,9 @@ EventCenter::EventCenter()
 
 EventCenter::~EventCenter(void)
 {
-	_dispatcher.stop();
-	
+	triggerEvent(APP_QUIT, 0, 0, 0, PRIORITY_HIGH);
+	_dispatcher.waitUntilDone();
+
 	for ( int i = 0; i < PRIORITY_LEVEL_COUNT; i++ )
 	{
 		delete _pFreeSem[ i ];
@@ -124,13 +125,6 @@ EventCenter::~EventCenter(void)
 	{
 		delete _eventStations[i];
 	}
-
-
-	_eventStations.clear();
-	
-#ifndef _WIN32
-	PosixThread::waitUntilDone(_dispatcher.getThreadId());
-#endif
 }
 
 

@@ -5,8 +5,8 @@
 #include "NetworkDataRecognizer.h"
 
 const unsigned int NETWORK_BUFFER_LENGTH = 1 << 23;				  /* 8M */
-const unsigned int BUFFER_BEGIN_INDEX	 = 1 << 20;				  /* 缓冲区开头预留1M */
-const unsigned int BUFFER_END_INDEX		 = (1 << 22) - (1 << 20); /* 缓冲区尾部预留1M */
+const unsigned int BUFFER_BEGIN_INDEX	 = 0;
+const unsigned int BUFFER_END_INDEX		 = (1 << 23) - (1 << 20); /* 缓冲区尾部预留1M */
 
 class NetworkConn;
 
@@ -25,6 +25,8 @@ public:
 	size_t					getLength();
 	void					run();
 
+	void					quit() { _quit = true; }
+
 private:
 	NetworkConn*			_conn;
 
@@ -35,4 +37,6 @@ private:
 	unsigned int			_posInTail;
 
 	OnReceiveCallback		_onReceive;
+
+	bool					_quit;
 };
