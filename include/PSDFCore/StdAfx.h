@@ -16,13 +16,12 @@
 #include <map>
 #include <iostream>
 #include <vector>
-#include <set>
 #include <string>
 #include <locale>
 #include <memory.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
 #include <fstream>
 #include <ctime>
 
@@ -39,7 +38,9 @@
 #include <boost/property_tree/xml_parser.hpp>
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
-#include <boost/program_options/detail/utf8_codecvt_facet.hpp>
+#include <boost/thread.hpp>
+#include <boost/chrono.hpp>
+#include <boost/program_options/detail/utf8_codecvt_facet.hpp> // used for xml parser
 
 /* OSG开发库头文件 */
 #include <osg/Group>
@@ -55,28 +56,17 @@
 #include <osg/LightModel>
 #include <osg/LightSource>
 
-
-#ifdef _WIN32
-#pragma comment(lib, "pthreadVC2.lib")
-#endif
-
 /* OSG开发库 */
 #ifdef _WIN32
 #	ifdef _DEBUG
 #		pragma comment(lib, "osgd.lib")
 #		pragma comment(lib, "osgViewerd.lib")
 #		pragma comment(lib, "osgDBd.lib")
-#		pragma comment(lib, "osgUtild.lib")
 #		pragma comment(lib, "osgTextd.lib")
-#		pragma comment(lib, "osgSimd.lib")
-#		pragma comment(lib, "osgGAd.lib")
 #	else
 #		pragma comment(lib, "osg.lib")
 #		pragma comment(lib, "osgViewer.lib")
 #		pragma comment(lib, "osgDB.lib")
-#		pragma comment(lib, "osgUtil.lib")
 #		pragma comment(lib, "osgText.lib")
-#		pragma comment(lib, "osgSim.lib")
-#		pragma comment(lib, "osgGA.lib")
 #	endif
 #endif

@@ -1,7 +1,7 @@
 #include "StdAfx.h"
 
 #include <PSDFViewQt/impl/ViewerQt2D.h>
-#include <osgViewer/ViewerEventHandlers>
+//#include <osgViewer/ViewerEventHandlers>
 
 #include <fstream>
 #include <ctime>
@@ -25,5 +25,5 @@ ViewerQt2D::ViewerQt2D( QWidget * parent, DisplayMode displayMode, const string&
 
 	setMainCamera(new Camera2D(this, needRoam));
 
-	addEventHandler(new osgViewer::StatsHandler);
+	//addEventHandler(new osgViewer::StatsHandler);
 }

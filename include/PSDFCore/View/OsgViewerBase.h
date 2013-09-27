@@ -5,7 +5,8 @@
 #include "../Layer/ScreenManager.h"
 #include "../Pick/PickableManager.h"
 #include "../View/CameraBase.h"
-#include "../View/StatsHandler.h"
+//#include "../View/StatsHandler.h"
+#include <osgViewer/GraphicsWindow>
 
 class PSDF_CORE_DLL_DECL OsgViewerBase : public osgViewer::Viewer
 {
@@ -29,7 +30,7 @@ public:
 	CameraBase *								getMainCamera() const;
 	void										setMainCamera(CameraBase* camera);
 
-	virtual GraphicsWindow*						getGraphicsWindow() = 0;
+	virtual osgViewer::GraphicsWindow*			getGraphicsWindow() = 0;
 
 	void										adjustCamera(int viewWidth, int viewHeight);
 
@@ -63,5 +64,5 @@ protected:
 	ref_ptr<Group>								_sceneData;
 	Light*										_sunLight;
 
-	StatsHandler*								_statsHandler;
+	//StatsHandler*								_statsHandler;
 };

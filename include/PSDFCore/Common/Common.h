@@ -72,5 +72,3 @@ const string						DEFAULT_PIP_WINDOW = "Default PIP view";
 #ifndef _IN
 #define _IN
 #endif
-
-const string					PSDFCore_Lib = "PSDFCore_Lib";
