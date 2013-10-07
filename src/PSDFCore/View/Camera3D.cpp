@@ -83,7 +83,6 @@ void Camera3D::rotateCameraZ( short currMouseX, short currMouseY )
 {
 	int xdiff = abs(currMouseX - _lastMouseX);
 	int ydiff = abs(currMouseY - _lastMouseY);
-	double angle = (currMouseY - _lastMouseY) * 100 / EARTH_R;
 
 	Vec3d lastMouseWorld, currMouseWorld;
 	screenToWorld(_lastMouseX, _lastMouseY, lastMouseWorld);

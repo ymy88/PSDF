@@ -523,11 +523,13 @@ Vec3d CameraController::switchCoordinateSystem_point( const Vec3d& point, CoordT
 	{
 	case COORD_TYPE_BASE_EYE_2:	res = res + _currEye;	break;
 	case COORD_TYPE_BASE_AT_2:	res = res + _currAt;	break;
+	default: break;
 	}
 	switch (to)
 	{
 	case COORD_TYPE_BASE_EYE_2:	res = res - _currEye;	break;
 	case COORD_TYPE_BASE_AT_2:	res = res - _currAt;	break;
+	default: break;
 	}
 
 	return res;

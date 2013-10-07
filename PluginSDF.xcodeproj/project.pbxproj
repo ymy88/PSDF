@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F93633CE17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F93633CD17B3C41100F6158C /* moc_QGLWidgetAdapter.cpp */; };
-		F93633CF17B3C4C600F6158C /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */; };
-		F93633D017B3C4C900F6158C /* libboost_filesystem-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */; };
-		F93633D117B3C4CB00F6158C /* libboost_program_options-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */; };
 		F95BBFA017B3AB3300442DAE /* Common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4B17B3AAE600442DAE /* Common.cpp */; };
 		F95BBFA117B3AB3300442DAE /* DataCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4D17B3AAE600442DAE /* DataCenter.cpp */; };
 		F95BBFA217B3AB3300442DAE /* EventCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF4F17B3AAE600442DAE /* EventCenter.cpp */; };
@@ -35,9 +32,6 @@
 		F95BBFB517B3AB3300442DAE /* StaticNodeGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6E17B3AAE600442DAE /* StaticNodeGroup.cpp */; };
 		F95BBFB617B3AB3300442DAE /* StatsHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6F17B3AAE600442DAE /* StatsHandler.cpp */; };
 		F95BBFB717B3AB3E00442DAE /* StdAfx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF6717B3AAE600442DAE /* StdAfx.cpp */; };
-		F95BBFBB17B3ADAA00442DAE /* libboost_program_options-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */; };
-		F95BBFBD17B3ADB600442DAE /* libboost_filesystem-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */; };
-		F95BBFBF17B3ADBA00442DAE /* libboost_system-mt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */; };
 		F95BBFD017B3B0E600442DAE /* QGLWidgetAdapter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7217B3AAE600442DAE /* QGLWidgetAdapter.cpp */; };
 		F95BBFD117B3B0E600442DAE /* stdafx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7517B3AAE600442DAE /* stdafx.cpp */; };
 		F95BBFD217B3B0E600442DAE /* ViewerQt2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F95BBF7717B3AAE600442DAE /* ViewerQt2D.cpp */; };
@@ -50,6 +44,12 @@
 		F95BBFE617B3BD3600442DAE /* QtCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE317B3BD3600442DAE /* QtCore.framework */; };
 		F95BBFE717B3BD3600442DAE /* QtGui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE417B3BD3600442DAE /* QtGui.framework */; };
 		F95BBFE817B3BD3600442DAE /* QtOpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */; };
+		F99CA8A01802AFEC0055E877 /* libboost_program_options-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA89F1802AFEC0055E877 /* libboost_program_options-mt.dylib */; };
+		F99CA8A21802AFFC0055E877 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA8A11802AFFC0055E877 /* libboost_filesystem-mt.dylib */; };
+		F99CA8A41802B0050055E877 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA8A31802B0050055E877 /* libboost_system-mt.dylib */; };
+		F99CA8A61802B0100055E877 /* libboost_thread-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA8A51802B0100055E877 /* libboost_thread-mt.dylib */; };
+		F99CA8A91802B0A10055E877 /* libboost_filesystem-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA8A11802AFFC0055E877 /* libboost_filesystem-mt.dylib */; };
+		F99CA8AA1802B0DF0055E877 /* libboost_system-mt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F99CA8A31802B0050055E877 /* libboost_system-mt.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,13 +130,14 @@
 		F95BBF7717B3AAE600442DAE /* ViewerQt2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewerQt2D.cpp; sourceTree = "<group>"; };
 		F95BBF7817B3AAE600442DAE /* ViewerQt3D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ViewerQt3D.cpp; sourceTree = "<group>"; };
 		F95BBF9C17B3AB0400442DAE /* libPSDFCored.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPSDFCored.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_program_options-mt.a"; path = "/opt/local/lib/libboost_program_options-mt.a"; sourceTree = "<absolute>"; };
-		F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_filesystem-mt.a"; path = "/opt/local/lib/libboost_filesystem-mt.a"; sourceTree = "<absolute>"; };
-		F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libboost_system-mt.a"; path = "/opt/local/lib/libboost_system-mt.a"; sourceTree = "<absolute>"; };
 		F95BBFCB17B3B0C400442DAE /* libPSDFViewQtd.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libPSDFViewQtd.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95BBFE317B3BD3600442DAE /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
 		F95BBFE417B3BD3600442DAE /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<absolute>"; };
 		F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtOpenGL.framework; path = /Library/Frameworks/QtOpenGL.framework; sourceTree = "<absolute>"; };
+		F99CA89F1802AFEC0055E877 /* libboost_program_options-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_program_options-mt.dylib"; path = "/opt/local/lib/libboost_program_options-mt.dylib"; sourceTree = "<absolute>"; };
+		F99CA8A11802AFFC0055E877 /* libboost_filesystem-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_filesystem-mt.dylib"; path = "/opt/local/lib/libboost_filesystem-mt.dylib"; sourceTree = "<absolute>"; };
+		F99CA8A31802B0050055E877 /* libboost_system-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_system-mt.dylib"; path = "/opt/local/lib/libboost_system-mt.dylib"; sourceTree = "<absolute>"; };
+		F99CA8A51802B0100055E877 /* libboost_thread-mt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libboost_thread-mt.dylib"; path = "/opt/local/lib/libboost_thread-mt.dylib"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +145,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F95BBFBB17B3ADAA00442DAE /* libboost_program_options-mt.a in Frameworks */,
-				F95BBFBD17B3ADB600442DAE /* libboost_filesystem-mt.a in Frameworks */,
-				F95BBFBF17B3ADBA00442DAE /* libboost_system-mt.a in Frameworks */,
+				F99CA8A01802AFEC0055E877 /* libboost_program_options-mt.dylib in Frameworks */,
+				F99CA8A21802AFFC0055E877 /* libboost_filesystem-mt.dylib in Frameworks */,
+				F99CA8A41802B0050055E877 /* libboost_system-mt.dylib in Frameworks */,
+				F99CA8A61802B0100055E877 /* libboost_thread-mt.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,9 +159,8 @@
 				F95BBFE617B3BD3600442DAE /* QtCore.framework in Frameworks */,
 				F95BBFE717B3BD3600442DAE /* QtGui.framework in Frameworks */,
 				F95BBFE817B3BD3600442DAE /* QtOpenGL.framework in Frameworks */,
-				F93633CF17B3C4C600F6158C /* libboost_system-mt.a in Frameworks */,
-				F93633D017B3C4C900F6158C /* libboost_filesystem-mt.a in Frameworks */,
-				F93633D117B3C4CB00F6158C /* libboost_program_options-mt.a in Frameworks */,
+				F99CA8A91802B0A10055E877 /* libboost_filesystem-mt.dylib in Frameworks */,
+				F99CA8AA1802B0DF0055E877 /* libboost_system-mt.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,12 +493,13 @@
 		F95BBFC617B3B09E00442DAE /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				F99CA8A51802B0100055E877 /* libboost_thread-mt.dylib */,
+				F99CA8A31802B0050055E877 /* libboost_system-mt.dylib */,
+				F99CA8A11802AFFC0055E877 /* libboost_filesystem-mt.dylib */,
+				F99CA89F1802AFEC0055E877 /* libboost_program_options-mt.dylib */,
 				F95BBFE317B3BD3600442DAE /* QtCore.framework */,
 				F95BBFE417B3BD3600442DAE /* QtGui.framework */,
 				F95BBFE517B3BD3600442DAE /* QtOpenGL.framework */,
-				F95BBFBE17B3ADBA00442DAE /* libboost_system-mt.a */,
-				F95BBFBC17B3ADB600442DAE /* libboost_filesystem-mt.a */,
-				F95BBFBA17B3ADAA00442DAE /* libboost_program_options-mt.a */,
 			);
 			name = lib;
 			sourceTree = "<group>";

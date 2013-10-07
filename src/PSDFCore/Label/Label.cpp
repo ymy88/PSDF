@@ -19,7 +19,11 @@ Label::Label(const osgText::String& content,
 	_text->setPosition(Vec3(0, 0, 0));
 	_text->setColor(Vec4(r, g, b, 1.0));
 	_text->setAlignment(align);
+#ifdef _WIN32
 	_text->setFont("font/simkai.ttf");
+#else
+	//_text->setFont("/Library/Fonts/Microsoft/SimSun.ttf");
+#endif
 
 
 	Geode* geode = new Geode;
