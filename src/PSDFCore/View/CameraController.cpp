@@ -65,10 +65,10 @@ void CameraController::adjustCamera( int viewWidth, int viewHeight, double distB
 		dist = (z + bounding.radius() * COT_CAMERA_FOV_2) * viewHeight / viewWidth * 0.8;
 	}
 
-	_initEye = Vec3d(0, 0, dist);
-	_initAt = Vec3d(0, 0, distBetweenAtAndBase);
+	_initEye = Vec3d(bounding.center().x(), bounding.center().y(), dist);
+	_initAt = Vec3d(bounding.center().x(), bounding.center().y(), distBetweenAtAndBase);
 	_initUp = Vec3d(0, 1, 0);
-	_initBase = Vec3d(0, 0, 0);
+	_initBase = Vec3d(bounding.center().x(), bounding.center().y(), 0);
 
 	_currEye = _initEye;
 	_currAt = _initAt;
