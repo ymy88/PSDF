@@ -314,6 +314,10 @@ EventStation::EventStation(int stationId) : _freeSem( EVENT_STATION_QUEUE_LENGTH
 
 EventStation::~EventStation()
 {
+	if (_stationId == EVENT_STATION_ID_NON_VIEW)
+	{
+		_dispatcher.waitUntilDone();
+	}
 }
 
 /* 二级消息中心(消息站)将消息处理者添加到消息处理者队列 */
