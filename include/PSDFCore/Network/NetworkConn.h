@@ -1,7 +1,10 @@
+#pragma once
+
 #include "../Common/Common.h"
 #include "../Thread/PosixThreads.h"
-#include "NetworkDataRecognizer.h"
+
 #include "NetworkBuffer.h"
+#include "NetworkDataRecognizer.h"
 
 #define BOOST_DATE_TIME_NO_LIB	/* prevent Boost.asio from linking to Boost.Date_Time lib */
 #define BOOST_REGEX_NO_LIB		/* prevent Boost.asio from linking to Boost.Regex lib */
@@ -9,31 +12,60 @@
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
 
+using namespace boost::asio;
+
 class NetworkCenter;
+
+/*
+enum ConnType
+{
+	CONN_MULTICAST,
+	CONN_TCP,
+	CONN_UDP,
+};
+*/
+
+struct NetworkCallback : OnReceiveCallback
+{
+	virtual int	operator()(char* data, size_t receivedLen, NetworkConn* conn);
+};
 
 class PSDF_CORE_DLL_DECL NetworkConn : public PosixThread
 {
 	friend class NetworkCenter;
+	friend struct NetworkCallback;
 
 public:
-	NetworkConn(NetworkDataRecognizer* dataRecognizer = NULL);
+    NetworkConn(NetworkDataRecognizer * dataRecognizer = NULL);
 	virtual ~NetworkConn();
 
-	virtual bool	send(char* data, size_t length) = 0;
+	virtual bool	initConn(const string& ipAddr, unsigned short port) = 0;
+	virtual bool	send(unsigned short index, char* data, size_t length) = 0;
+	virtual bool	sendTo(char* data, size_t length, const string& ipAddr, unsigned short recvPort) { return false; }
 	virtual void	quit() { this->stop(); }
 
-	static int		onReceive(char* data, size_t receivedLen, NetworkConn* conn);
+    bool            isSameConn(const string& ipAddr, unsigned short port);
+    bool            isSameConn(const NetworkConn& conn);
+    void            addDataRecognizer( NetworkDataRecognizer* recg );
 
 	void			outputLog(ofstream& fout);
 
 protected:
-	int						_index;
-	size_t					_receivedCount;
-	size_t					_handledCount;
+	int				_index;
+	int				_lastEndpointIndex;
 
-	NetworkDataRecognizer*	_dataRecognizer;
-	NetworkBuffer			_buffer;
-	char*					_directBuffer;
+	size_t			_receivedCount;
+	size_t			_handledCount;
+
+
+	vector<NetworkDataRecognizer*>	_dataRecognizers;
+
+	static NetworkBuffer			_buffer;
+	static NetworkCallback			_callback;
+
+	//ConnType		_type;
+	string			_ip;
+	unsigned short	_port;
 };
 
 //--------------------------
@@ -44,19 +76,20 @@ class PSDF_CORE_DLL_DECL Multicast : public NetworkConn
 	friend class NetworkCenter;
 
 private:
-	Multicast(const string& ipAddr, unsigned short recvPort, NetworkDataRecognizer* dataRecognizer = NULL);
+	Multicast(NetworkDataRecognizer* dataRecognizer = NULL);
 
 public:
-	bool joinGroup(const string& ipAddr, unsigned short recvPort);
-	bool send(char* data, size_t length);
+	bool initConn(const string& ipAddr, unsigned short recvPort); // join group
+	bool send(unsigned short index, char* data, size_t length);
 	void run();
 	void quit();
 
 private:
-	boost::asio::ip::address		_address;
-	unsigned short					_recvPort;
-	boost::asio::io_service			_ioService;
-	boost::asio::ip::udp::socket	_socket;
+	ip::address		_address;
+	unsigned short	_recvPort;
+	io_service		_ioService;
+	ip::udp::socket	_socket;
+
 };
 
 //--------------------------
@@ -67,12 +100,13 @@ class PSDF_CORE_DLL_DECL TCP : public NetworkConn
 	friend class NetworkCenter;
 
 private:
-	TCP(const string& ipAddr, unsigned short port, NetworkDataRecognizer* dataRecognizer) {TOUCH(ipAddr); TOUCH(port); TOUCH(dataRecognizer);}
+	TCP(NetworkDataRecognizer* dataRecognizer)
+	: NetworkConn(dataRecognizer) {}
 	~TCP() {}
 
 public:
-	bool connect(const string& ipAddr, unsigned short port);
-	bool send(char* data, size_t length);
+	bool initConn(const string& ipAddr, unsigned short port); // connect
+	bool send(unsigned short index, char* data, size_t length);
 	void run();
 	void quit();
 };
@@ -85,12 +119,17 @@ class PSDF_CORE_DLL_DECL UDP : public NetworkConn
 	friend class NetworkCenter;
 
 private:
-	UDP() {}
+    UDP(NetworkDataRecognizer* dataRecognizer);
 	~UDP() {}
 
 public:
-	bool connect(const string& ipAddr, unsigned short port);
-	bool send(char* data, size_t length);
+	bool initConn(const string& ipAddr, unsigned short port);
+	bool send(unsigned short index, char* data, size_t length);
 	void run();
 	void quit();
+
+private:
+	io_service					_ioService;
+	ip::udp::socket*			_socket;
+	vector<ip::udp::endpoint*>	_remoteEndpoints;
 };

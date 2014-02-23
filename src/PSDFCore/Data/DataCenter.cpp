@@ -8,7 +8,6 @@ DataCenter::DataCenter()
 	_lookedCount= 0;
 	_hitCount= 0;
 	_lastIndex = 0;
-	_round = 1;
 }
 
 DataCenter::~DataCenter()
@@ -33,13 +32,13 @@ DataCenter* DataCenter::inst()
 	return &instance;
 }
 
-bool DataCenter::tryClearData( ReferencedData& refData, int newDataLength )
+bool DataCenter::tryClearData(ReferencedData& refData, int newDataLength, int timestamp)
 {
 	if (refData.refCount > 0) { return false; }
 
-	int roundDiff = _round - refData.round;
-	if (roundDiff == 0) { return false; }
-	
+	int timePassed = timestamp - refData.timestamp;
+	if (timePassed <= 3) { return false; }
+
 
 	if (refData.buffer == NULL)
 	{
@@ -55,7 +54,7 @@ bool DataCenter::tryClearData( ReferencedData& refData, int newDataLength )
 
 	refData.refCount = 0;
 	refData.dataLength = newDataLength;
-	refData.round = _round;
+	refData.timestamp = timestamp;
 
 	return true;
 }
@@ -63,17 +62,13 @@ bool DataCenter::tryClearData( ReferencedData& refData, int newDataLength )
 int DataCenter::addData(char* data, int length)
 {
 	unsigned int i = _lastIndex + 1;
-	int currRound = _round;
+	int timestamp = clock() / CLOCKS_PER_SEC;
 
 	for (;; ++i)
 	{
 		if (i >= DATACENTER_BUFFER_LENGTH)
 		{
 			i = 0;
-			++currRound;
-			if (currRound > (int)DATACENTER_MAX_ROUND) { currRound = 1; }
-			
-			_round = currRound;
 		}
 
 		++_lookedCount;
@@ -81,7 +76,7 @@ int DataCenter::addData(char* data, int length)
 		bool locked = _bufferLock[i].tryLock();
 		if (!locked) { continue; }
 
-		if (tryClearData(_dataBuffer[i], length))
+		if (tryClearData(_dataBuffer[i], length, timestamp))
 		{
 			++_hitCount;
 
@@ -95,8 +90,7 @@ int DataCenter::addData(char* data, int length)
 		_bufferLock[i].unlock();
 	}
 
-	int res = createDataIndex(_round, i);
-	return res;
+	return i;
 }
 
 void DataCenter::outputLog( ofstream& fout )

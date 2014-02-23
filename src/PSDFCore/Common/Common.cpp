@@ -64,7 +64,7 @@ wstring stringToWString( const string& str )
 	
 	memset( buf, 0, size );
 	string curLocal = setlocale( LC_CTYPE, "" );
-#ifdef _WIN32
+#if defined _WIN32 || WIN32
 	unsigned tmp;
 	mbstowcs_s( &tmp, buf, size, str.c_str(), str.length() );
 #else
@@ -87,7 +87,7 @@ string wstringToString( const wstring& wstr )
 	char* buf = new char[size];
 	memset(buf, 0, size);
 	string curLocal = setlocale(LC_CTYPE, "");
-#ifdef _WIN32
+#if defined _WIN32 || WIN32
 	unsigned tmp;
 	wcstombs_s(&tmp, buf, size, wstr.c_str(), 2 * wstr.length());
 #else

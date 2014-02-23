@@ -41,6 +41,8 @@ QGLWidgetAdapter::QGLWidgetAdapter( QWidget * parent, DisplayMode displayMode, c
 	_gw->setDataVariance( Object::DYNAMIC );
     
 	setFocusPolicy( Qt::ClickFocus );
+
+	_statsHandler = new StatsHandler(this);
 }
 
 void QGLWidgetAdapter::resizeGL( int width, int height )

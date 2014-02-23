@@ -112,6 +112,7 @@ OsgViewerBase::~OsgViewerBase()
 		}
 	}
 
+	this->setSceneData(NULL);
 	delete _layerManager;
 	delete _pickableManager;
 	delete _screenManager;

@@ -7,7 +7,7 @@
 #include "impl/ViewerQt2D.h"
 #include "impl/ViewerQt3D.h"
 
-#ifdef _WIN32
+#if defined _WIN32 || WIN32
 #ifdef _DEBUG
 #pragma comment(lib, "PSDFViewQtd.lib")
 #else

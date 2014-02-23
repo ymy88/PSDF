@@ -330,6 +330,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\include\PSDFCore\Data\DataPtr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\include\PSDFCore\Event\EventCenter.h"
 				>
 			</File>

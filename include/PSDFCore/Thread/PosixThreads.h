@@ -35,8 +35,8 @@ public:
 		_thread = new boost::thread(boost::ref(_callable));
 	}
 
-	void		stop() { _thread->interrupt(); }
-	void		waitUntilDone() { _thread->join(); }
+	virtual void stop() { _thread->interrupt(); }
+	void		 waitUntilDone() { _thread->join(); }
 
 	static void	msleep( long millisec ) { boost::this_thread::sleep_for(boost::chrono::milliseconds(millisec)); }
 	static void	nsleep( long nanosec ) { boost::this_thread::sleep_for(boost::chrono::nanoseconds(nanosec)); }

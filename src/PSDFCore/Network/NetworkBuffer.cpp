@@ -2,7 +2,7 @@
 
 #include <PSDFCore/Network/NetworkBuffer.h>
 
-NetworkBuffer::NetworkBuffer( OnReceiveCallback onReceive ) :
+NetworkBuffer::NetworkBuffer( OnReceiveCallback* onReceive ) :
 _onReceive(onReceive),
 _quit(false)
 {
@@ -62,7 +62,7 @@ void NetworkBuffer::run()
 			continue;
 		}
 
-		dataLen = _onReceive(_buffer + _getPos, receivedLen, _conn);
+		dataLen = (*_onReceive)(_buffer + _getPos, receivedLen, _conn);
 
 		_getPos += dataLen;
 		if (_getPos == _posInTail)

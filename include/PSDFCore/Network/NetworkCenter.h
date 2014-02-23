@@ -16,10 +16,13 @@ private:
 public:
 	static NetworkCenter*	inst();
 
-	int						createMulticast(const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer);
-	int						createTcp(const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer);
-	int						createUdp(const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer);
+	int						createMulticast(const string& groupIP, unsigned short port, NetworkDataRecognizer* dataRecognizer);
+	int						createTcpClient(const string& remoteIP, unsigned short remotePort, NetworkDataRecognizer* dataRecognizer);
+	void					createTcpServer(unsigned short localPort, NetworkDataRecognizer* dataRecognizer);
+	int						createUdpClient(const string& remoteIP, unsigned short remotePort, NetworkDataRecognizer* dataRecognizer);
+	void					createUdpServer(unsigned short localPort, NetworkDataRecognizer* dataRecognizer);
 
+    int                     isExist( const string& ipAddr, unsigned short port );
 	void					send(unsigned int index, char* data, size_t length);
 
 	void					outputLog(ofstream& fout);

@@ -37,6 +37,7 @@
 #include "View/Camera3D.h"
 #include "View/CameraBase.h"
 #include "View/OsgViewerBase.h"
+#include "View/StatsHandler.h"
 
 /* 数据存储 */
 #include "Data/DataCenter.h"

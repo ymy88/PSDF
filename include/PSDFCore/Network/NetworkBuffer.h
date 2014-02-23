@@ -10,12 +10,15 @@ const unsigned int BUFFER_END_INDEX		 = (1 << 23) - (1 << 20); /* 缓冲区尾�
 
 class NetworkConn;
 
-typedef int (*OnReceiveCallback)(char* data, size_t receivedLen, NetworkConn* conn);
+struct OnReceiveCallback
+{
+	virtual int operator()(char* data, size_t receivedLen, NetworkConn* conn) = 0;
+};
 
 class PSDF_CORE_DLL_DECL NetworkBuffer : public PosixThread
 {
 public:
-	NetworkBuffer(OnReceiveCallback onReceive);
+	NetworkBuffer(OnReceiveCallback* onReceive);
 	~NetworkBuffer();
 
 	void					setNetworkConn(NetworkConn* conn);
@@ -36,7 +39,7 @@ private:
 
 	unsigned int			_posInTail;
 
-	OnReceiveCallback		_onReceive;
+	OnReceiveCallback*		_onReceive;
 
 	bool					_quit;
 };

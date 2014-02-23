@@ -51,6 +51,8 @@ protected:
 
 protected:
     osg::ref_ptr< osgViewer::GraphicsWindowEmbedded >	_gw;
+
+	StatsHandler*						_statsHandler;
 };
 
 

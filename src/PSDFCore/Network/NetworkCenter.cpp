@@ -34,45 +34,109 @@ NetworkCenter* NetworkCenter::inst()
 	return &instance;
 }
 
-int NetworkCenter::createMulticast( const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer )
+int NetworkCenter::createMulticast( const string& ipAddr, unsigned short port, NetworkDataRecognizer* dataRecognizer )
 {
-	int index = _connections.size();
+    int index = isExist(ipAddr, port);
+    if (index != -1)
+	{
+        _connections[index]->addDataRecognizer(dataRecognizer);
+        return index;
+	}
 
-	NetworkConn* conn = new Multicast(ipAddr, port, dataRecognizer);
+	index = _connections.size();
+
+	NetworkConn* conn = new Multicast(dataRecognizer);
+	conn->initConn(ipAddr, port);
 	_connections.push_back(conn);
 	conn->_index = index;
 
 	return index;
 }
 
-int NetworkCenter::createTcp( const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer )
+int NetworkCenter::createTcpClient( const string& remoteIP, unsigned short remotePort, NetworkDataRecognizer* dataRecognizer )
 {
-	int index = _connections.size();
+    int index = isExist(remoteIP, remotePort);
+    if (index != -1)
+	{
+        _connections[index]->addDataRecognizer(dataRecognizer);
+        return index;
+	}
 
-	NetworkConn* conn = new TCP(ipAddr, port, dataRecognizer);
+	index = _connections.size();
+	index <<= 16;
+
+
+	NetworkConn* conn = new TCP(dataRecognizer);
+	conn->initConn(remoteIP, remotePort);
 	_connections.push_back(conn);
 	conn->_index = index;
 
 	return index;
 }
 
-int NetworkCenter::createUdp( const string& ipAddr, short port, NetworkDataRecognizer* dataRecognizer )
+void NetworkCenter::createTcpServer( unsigned short localPort, NetworkDataRecognizer* dataRecognizer )
 {
-	int index = _connections.size();
+	string remoteIP = "0.0.0.0";
+    int index = isExist(remoteIP, localPort);
+	if (index != -1)
+	{
+		_connections[index]->addDataRecognizer(dataRecognizer);
+	}
 
-	NetworkConn* conn = new UDP;
+	index = _connections.size();
+	index <<= 16;
+
+	NetworkConn* conn = new TCP(dataRecognizer);
+	conn->initConn("0.0.0.0", localPort);
+	_connections.push_back(conn);
+	conn->_index = index;
+}
+
+int NetworkCenter::createUdpClient( const string& remoteIP, unsigned short remotePort, NetworkDataRecognizer* dataRecognizer )
+{
+    int index = isExist(remoteIP, remotePort);
+    if (index != -1)
+	{
+        _connections[index]->addDataRecognizer(dataRecognizer);
+        return index;
+	}
+
+	index = _connections.size();
+	index <<= 16;
+
+	NetworkConn* conn = new UDP(dataRecognizer);
+	conn->initConn(remoteIP, remotePort);
 	_connections.push_back(conn);
 	conn->_index = index;
 
 	return index;
+}
+
+void NetworkCenter::createUdpServer( unsigned short localPort, NetworkDataRecognizer* dataRecognizer )
+{
+	string remoteIP = "0.0.0.0";
+	int index = isExist(remoteIP, localPort);
+	if (index != -1)
+	{
+		_connections[index]->addDataRecognizer(dataRecognizer);
+	}
+
+	index = _connections.size();
+	index <<= 16;
+
+	NetworkConn* conn = new UDP(dataRecognizer);
+	conn->initConn(remoteIP, localPort);
+	_connections.push_back(conn);
+	conn->_index = index;
 }
 
 void NetworkCenter::send( unsigned int index, char* data, size_t length )
 {
-	if (index >= _connections.size()) { return; }
+	unsigned int connIndex = (index >> 16) & 0x0000ffff;
+	if (connIndex >= _connections.size()) { return; }
 
-	NetworkConn* conn = _connections[index];
-	conn->send(data, length);
+	NetworkConn* conn = _connections[connIndex];
+	conn->send((unsigned short)(index & 0x0000ffff), data, length);
 }
 
 void NetworkCenter::outputLog(ofstream& fout)
@@ -84,5 +148,14 @@ void NetworkCenter::outputLog(ofstream& fout)
 	}
 }
 
-
-
+int NetworkCenter::isExist( const string& ipAddr, unsigned short port )
+{
+    for (unsigned int i = 0; i < _connections.size(); ++i)
+	{
+        if (_connections[i]->isSameConn(ipAddr, port))
+		{
+            return i;
+		}
+	}
+    return -1;
+}
